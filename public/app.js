@@ -184,12 +184,11 @@ function renderHome(){
     return;
   }
   box.innerHTML = pubs.map(d => { const v = d.verdict || {}; return `<a class="card" href="/i/${esc(d.key)}" style="--ih:${issueHue(d.key)}">
-    <canvas data-seed="${hashStr(d.key)}" aria-hidden="true"></canvas>
     <div class="label">${esc(whereOf(d))} · ${esc(d.category)}</div>
     <h3>${esc(d.headline || d.title)}</h3>
     <p class="sum">${esc(d.summary)}</p>
     <div class="meta"><span class="chip ${verdClass(v.score)}">${esc(v.label || "")}</span><span class="label">${d.claimCount} claims · ${d.sourceCount} sources</span></div></a>`; }).join("");
-  box.querySelectorAll("canvas").forEach(c => terrain(c, {seed: +c.dataset.seed, accent: "issue", levels: 10, speed: .6}));
+  reveal(box);
 }
 
 /* ---------- my reports (remembered in this browser) ---------- */
@@ -269,32 +268,31 @@ function chartSVG(f){
   const y = v => mt + ih - (v / top) * ih, n = pts.length, bw = iw / n;
   const every = Math.ceil(n / 8);
   let g = "";
-  for (let v = 0; v <= top + 1e-9; v += step) g += `<line x1="${ml}" x2="${W - mr}" y1="${y(v)}" y2="${y(v)}" stroke="var(--line)" stroke-width="1"/><text x="${ml - 8}" y="${y(v) + 4}" text-anchor="end" font-size="11" fill="var(--muted)" font-family="IBM Plex Mono,monospace">${+v.toFixed(2)}</text>`;
-  const xl = pts.map((p, i) => i % every === 0 || i === n - 1 ? `<text x="${ml + bw * i + bw / 2}" y="${H - mb + 18}" text-anchor="middle" font-size="11" fill="var(--muted)" font-family="IBM Plex Mono,monospace">${esc(String(p.label).slice(0, 12))}</text>` : "").join("");
+  for (let v = 0; v <= top + 1e-9; v += step) g += `<line x1="${ml}" x2="${W - mr}" y1="${y(v)}" y2="${y(v)}" stroke="var(--line)" stroke-width="1"/><text x="${ml - 8}" y="${y(v) + 4}" text-anchor="end" font-size="11" fill="var(--muted)" font-family="Inter,system-ui,sans-serif">${+v.toFixed(2)}</text>`;
+  const xl = pts.map((p, i) => i % every === 0 || i === n - 1 ? `<text x="${ml + bw * i + bw / 2}" y="${H - mb + 18}" text-anchor="middle" font-size="11" fill="var(--muted)" font-family="Inter,system-ui,sans-serif">${esc(String(p.label).slice(0, 12))}</text>` : "").join("");
   let marks = "";
   if (f.kind === "line") {
     const xy = pts.map((p, i) => [ml + bw * i + bw / 2, y(+p.value)]);
     const d = xy.map((q, i) => (i ? "L" : "M") + q[0].toFixed(1) + "," + q[1].toFixed(1)).join("");
     const len = Math.round(xy.reduce((s, q, i) => i ? s + Math.hypot(q[0] - xy[i-1][0], q[1] - xy[i-1][1]) : 0, 0)) + 5;
-    marks = `<path d="${d}L${xy[n-1][0]},${y(0)}L${xy[0][0]},${y(0)}Z" fill="var(--issue)" opacity=".12"/><path class="lineDraw" style="--len:${len}" d="${d}" fill="none" stroke="var(--issue)" stroke-width="2.6" stroke-linejoin="round"/>` +
+    marks = `<path d="${d}L${xy[n-1][0]},${y(0)}L${xy[0][0]},${y(0)}Z" fill="var(--issue)" opacity=".12"/><path class="chartLine" style="--len:${len}" d="${d}" fill="none" stroke="var(--issue)" stroke-width="2.6" stroke-linejoin="round"/>` +
       xy.map((q, i) => `<circle cx="${q[0]}" cy="${q[1]}" r="${i === n - 1 ? 5 : 2.6}" fill="var(--issue)"/>`).join("") +
-      `<text x="${Math.min(xy[n-1][0], W - mr - 4)}" y="${xy[n-1][1] - 11}" text-anchor="end" font-size="13" font-weight="700" fill="var(--ink)" font-family="Public Sans,sans-serif">${esc(pts[n-1].value)} ${esc(f.unit || "")}</text>`;
+      `<text x="${Math.min(xy[n-1][0], W - mr - 4)}" y="${xy[n-1][1] - 11}" text-anchor="end" font-size="13" font-weight="700" fill="var(--ink)" font-family="Inter,system-ui,sans-serif">${esc(pts[n-1].value)} ${esc(f.unit || "")}</text>`;
   } else {
     marks = pts.map((p, i) => { const v = +p.value, bx = ml + bw * i + bw * .19, bwid = bw * .62, over = refV !== null && v > refV;
-      return `<rect class="bar" style="animation-delay:${i * 60}ms" x="${bx.toFixed(1)}" y="${y(v).toFixed(1)}" width="${bwid.toFixed(1)}" height="${(y(0) - y(v)).toFixed(1)}" fill="${over ? "var(--bad)" : "var(--issue)"}"><title>${esc(p.label)}: ${esc(p.value)} ${esc(f.unit || "")}</title></rect>` +
-        (n <= 12 ? `<text x="${(bx + bwid / 2).toFixed(1)}" y="${(y(v) - 6).toFixed(1)}" text-anchor="middle" font-size="11" font-weight="600" fill="var(--ink)" font-family="IBM Plex Mono,monospace">${esc(p.value)}</text>` : ""); }).join("");
+      return `<rect class="bar" rx="6" style="transition-delay:${i * 70}ms" x="${bx.toFixed(1)}" y="${y(v).toFixed(1)}" width="${bwid.toFixed(1)}" height="${(y(0) - y(v)).toFixed(1)}" fill="${over ? "var(--bad)" : "var(--issue)"}"><title>${esc(p.label)}: ${esc(p.value)} ${esc(f.unit || "")}</title></rect>` +
+        (n <= 12 ? `<text x="${(bx + bwid / 2).toFixed(1)}" y="${(y(v) - 6).toFixed(1)}" text-anchor="middle" font-size="11" font-weight="600" fill="var(--ink)" font-family="Inter,system-ui,sans-serif">${esc(p.value)}</text>` : ""); }).join("");
   }
-  const ref = refV !== null ? `<line x1="${ml}" x2="${W - mr}" y1="${y(refV)}" y2="${y(refV)}" stroke="var(--bad)" stroke-width="1.5" stroke-dasharray="5 4"/><text x="${W - mr}" y="${y(refV) - 6}" text-anchor="end" font-size="11.5" font-weight="600" fill="var(--bad)" font-family="Public Sans,sans-serif">${esc(f.reference.label || "")}</text>` : "";
+  const ref = refV !== null ? `<line x1="${ml}" x2="${W - mr}" y1="${y(refV)}" y2="${y(refV)}" stroke="var(--bad)" stroke-width="1.5" stroke-dasharray="5 4"/><text x="${W - mr}" y="${y(refV) - 6}" text-anchor="end" font-size="11.5" font-weight="600" fill="var(--bad)" font-family="Inter,system-ui,sans-serif">${esc(f.reference.label || "")}</text>` : "";
   return `<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="${esc(f.title)}">${g}${marks}${ref}<line x1="${ml}" x2="${W - mr}" y1="${y(0)}" y2="${y(0)}" stroke="var(--ink)" stroke-width="1.2"/>${xl}</svg>`;
 }
 function gaugeSVG(score){
-  const r = 92, c = 2 * Math.PI * r, s = Math.max(0, Math.min(100, +score || 0)), col = s >= 70 ? "var(--ok)" : s >= 40 ? "var(--part)" : "var(--bad)";
-  const ticks = Array.from({length: 40}, (_, i) => { const a = i / 40 * Math.PI * 2 - Math.PI / 2, r1 = 108, r2 = i % 10 === 0 ? 118 : 113; return `<line x1="${110 + Math.cos(a) * r1}" y1="${110 + Math.sin(a) * r1}" x2="${110 + Math.cos(a) * r2}" y2="${110 + Math.sin(a) * r2}" stroke="var(--muted)" stroke-width="${i % 10 ? 1 : 2}"/>`; }).join("");
-  return `<svg viewBox="0 0 220 220" role="img" aria-label="Evidence score ${s} of 100">${ticks}
-    <circle cx="110" cy="110" r="${r}" fill="none" stroke="var(--line)" stroke-width="14"/>
-    <circle cx="110" cy="110" r="${r}" fill="none" stroke="${col}" stroke-width="14" stroke-linecap="butt" transform="rotate(-90 110 110)" stroke-dasharray="${c}" stroke-dashoffset="${c}" style="transition:stroke-dashoffset 1.8s cubic-bezier(.2,.8,.2,1)" data-to="${c * (1 - s / 100)}"/>
-    <text x="110" y="122" text-anchor="middle" font-family="Big Shoulders Display,sans-serif" font-weight="900" font-size="62" fill="var(--ink)" data-score="${s}">0</text>
-    <text x="110" y="146" text-anchor="middle" font-family="IBM Plex Mono,monospace" font-size="10.5" letter-spacing="1.2" fill="var(--muted)">EVIDENCE / 100</text></svg>`;
+  const r = 94, c = 2 * Math.PI * r, s = Math.max(0, Math.min(100, +score || 0)), col = s >= 70 ? "var(--ok)" : s >= 40 ? "var(--part)" : "var(--bad)";
+  return `<svg viewBox="0 0 220 220" role="img" aria-label="Evidence score ${s} of 100">
+    <circle cx="110" cy="110" r="${r}" fill="none" stroke="var(--line)" stroke-opacity=".55" stroke-width="12"/>
+    <circle cx="110" cy="110" r="${r}" fill="none" stroke="${col}" stroke-width="12" stroke-linecap="round" transform="rotate(-90 110 110)" stroke-dasharray="${c}" stroke-dashoffset="${c}" style="transition:stroke-dashoffset 1.8s cubic-bezier(.22,.8,.16,1)" data-to="${c * (1 - s / 100)}"/>
+    <text x="110" y="124" text-anchor="middle" font-family="Inter,system-ui,sans-serif" font-weight="700" font-size="64" letter-spacing="-3" fill="var(--ink)" data-score="${s}">0</text>
+    <text x="110" y="152" text-anchor="middle" font-family="Inter,system-ui,sans-serif" font-weight="600" font-size="11" letter-spacing=".6" fill="var(--muted)">EVIDENCE / 100</text></svg>`;
 }
 function buildQuote(text, phrases){
   const spans = [];
@@ -346,9 +344,9 @@ function renderIssue(key, d){
     </div>
   </div></section>
 
-  ${(d.figures || []).length ? `<section class="band" style="background:var(--surface);border-block:1px solid var(--line)"><div class="wrap">
+  ${(d.figures || []).length ? `<section class="band dark"><div class="wrap">
     <div class="shead"><h2>The numbers</h2><p>Data series taken from the cited sources. Values above an official limit are marked in red.</p></div>
-    <div class="figs">${d.figures.map(f => `<div class="fig" style="background:var(--bg)"><span class="label">${esc(f.unit)}</span><h3>${esc(f.title)}</h3><div class="svgbox">${chartSVG(f)}</div><p class="note">${esc(f.note)} ${f.sourceId && src.has(f.sourceId) ? sref([f.sourceId]) : ""}</p></div>`).join("")}</div>
+    <div class="figs">${d.figures.map(f => `<div class="fig"><span class="label">${esc(f.unit)}</span><h3>${esc(f.title)}</h3><div class="svgbox">${chartSVG(f)}</div><p class="note">${esc(f.note)} ${f.sourceId && src.has(f.sourceId) ? sref([f.sourceId]) : ""}</p></div>`).join("")}</div>
   </div></section>` : ""}
 
   ${(d.timeline || []).length ? `<section class="band"><div class="wrap"><div class="shead"><h2>How it got here</h2></div>
@@ -357,7 +355,7 @@ function renderIssue(key, d){
   ${(d.responsible || []).length ? `<section class="band" style="padding-top:0"><div class="wrap"><div class="shead"><h2>Who can fix it</h2><p>Institutions with legal responsibility for this issue, as named in the sources.</p></div>
     <div class="resp">${d.responsible.map(r => `<div><b>${esc(r.name)}</b><span>${esc(r.role)}</span></div>`).join("")}</div></div></section>` : ""}
 
-  <section class="band" style="background:var(--surface);border-block:1px solid var(--line)"><div class="wrap">
+  <section class="band" style="background:var(--surface)"><div class="wrap">
     <div class="shead"><h2>Where this comes from</h2><p>Every source the dossier cites. Larger points are cited by more claims.</p></div>
     <div class="constel"><div><canvas id="constel" aria-label="Sources grouped by type"></canvas>
       <div class="legend">${TYPES.map(([t, l]) => `<span style="color:var(--c-${t})"><i></i><b style="color:var(--muted);font-weight:500">${l}</b></span>`).join("")}</div></div>
@@ -378,6 +376,7 @@ function renderIssue(key, d){
   wireLinks();
   issueStops.push(constellation($("#constel"), d, cites));
   renderOwnAddress(key, d);
+  reveal(v);
 }
 
 /* ---------- own address (name.plainproof.me), paid through Paddle ---------- */
@@ -474,8 +473,8 @@ function constellation(cv, d, cites){
     ctx.globalAlpha = 1;
     nodes.forEach(n => { ctx.fillStyle = TOK[n.col]; ctx.beginPath(); ctx.arc(n.x, n.y, hover === n ? n.r + 3 : n.r, 0, 7); ctx.fill(); ctx.strokeStyle = TOK.bg; ctx.lineWidth = 2; ctx.stroke(); });
     ctx.fillStyle = TOK.issue; ctx.beginPath(); ctx.arc(cx, cy, 15, 0, 7); ctx.fill();
-    ctx.fillStyle = TOK.bg; ctx.font = "600 11px 'IBM Plex Mono',monospace"; ctx.textAlign = "center"; ctx.fillText((d.claims || []).length, cx, cy + 4);
-    if (hover) { const lbl = `${hover.s.id} · ${hover.s.outlet}`; ctx.font = "600 13px 'Public Sans',sans-serif"; const tw = ctx.measureText(lbl).width + 16, x = Math.min(Math.max(hover.x, tw / 2 + 2), w - tw / 2 - 2), y = hover.y - hover.r - 18;
+    ctx.fillStyle = TOK.bg; ctx.font = "600 12px Inter,system-ui,sans-serif"; ctx.textAlign = "center"; ctx.fillText((d.claims || []).length, cx, cy + 4);
+    if (hover) { const lbl = `${hover.s.id} · ${hover.s.outlet}`; ctx.font = "600 13px Inter,system-ui,sans-serif"; const tw = ctx.measureText(lbl).width + 16, x = Math.min(Math.max(hover.x, tw / 2 + 2), w - tw / 2 - 2), y = hover.y - hover.r - 18;
       ctx.fillStyle = TOK.ink; ctx.fillRect(x - tw / 2, y - 14, tw, 22); ctx.fillStyle = TOK.bg; ctx.fillText(lbl, x, y + 1); }
   }
   function loop(){ raf = requestAnimationFrame(loop); if (document.hidden) return; t += 0.012; draw(); }
@@ -564,6 +563,38 @@ async function route(){
   if (t) t.scrollIntoView({ behavior: reduced ? "auto" : "smooth" }); else scrollTo(0, 0);
 }
 
+/* ---------- scroll reveal: content fades up as it enters the view ---------- */
+const revealIO = !reduced && "IntersectionObserver" in window && new IntersectionObserver(es => es.forEach(e => {
+  if (e.isIntersecting) { e.target.classList.add("in"); revealIO.unobserve(e.target); }
+}), { rootMargin: "0px 0px -8% 0px", threshold: .08 });
+function reveal(root){
+  if (!revealIO) return;
+  root.querySelectorAll(".shead, .card, .fig, .claim, .tl .ev, .resp > div, .track, .ownbox, .constel, .quote, .gauge, .empty").forEach((el, i) => {
+    if (el.classList.contains("rv")) return;
+    el.classList.add("rv");
+    el.style.transitionDelay = (el.matches(".card, .resp > div, .fig") ? (i % 3) * 90 : 0) + "ms";
+    revealIO.observe(el);
+  });
+}
+
+/* ---------- how it works: the number follows the step being read ---------- */
+(() => {
+  const steps = [...document.querySelectorAll(".story-steps li")], num = $("#storyNum"), name = $("#storyName"), bar = $("#storyBar");
+  if (!steps.length || !("IntersectionObserver" in window)) { steps.forEach(li => li.classList.add("active")); return; }
+  let cur = 0;
+  const show = i => {
+    if (i === cur) return; cur = i;
+    steps.forEach((li, k) => li.classList.toggle("active", k === i - 1));
+    bar.style.width = (i * 25) + "%";
+    if (reduced) { num.textContent = i; name.textContent = steps[i - 1].querySelector("h3").textContent; return; }
+    num.classList.add("swap");
+    setTimeout(() => { num.textContent = i; name.textContent = steps[i - 1].querySelector("h3").textContent; num.classList.remove("swap"); }, 220);
+  };
+  const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) show(+e.target.dataset.step); }), { rootMargin: "-45% 0px -45% 0px" });
+  steps.forEach(li => io.observe(li));
+  show(1);
+})();
+
 /* ---------- boot ---------- */
 async function loadPublished(){
   try {
@@ -583,7 +614,7 @@ function pollMine(){
 
 terrain($("#heroTerrain"), {seed: 2006, accent: "amber"});
 $("#navReview").hidden = !S.token;
-renderHome(); renderMine(); route();
+renderHome(); renderMine(); route(); reveal(document);
 loadPublished();
 refreshMine().then(pollMine);
 setInterval(() => { if (!document.hidden) loadPublished(); }, 120000);
