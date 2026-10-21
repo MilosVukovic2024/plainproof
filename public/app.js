@@ -141,7 +141,7 @@ const map = (() => {
 
 /* ---------- server ---------- */
 const api = async (path, opts = {}) => {
-  const headers = { "content-type": "application/json", ...(S.token ? { authorization: "Bearer " + S.token } : {}) };
+  const headers = { ...(opts.body instanceof FormData ? {} : { "content-type": "application/json" }), ...(S.token ? { authorization: "Bearer " + S.token } : {}) };
   const res = await fetch(path, { ...opts, headers: { ...headers, ...(opts.headers || {}) } });
   const body = await res.json().catch(() => ({}));
   if (!res.ok) throw Object.assign(new Error(body.error || res.statusText), { status: res.status });
@@ -154,6 +154,10 @@ const store = {
 };
 S.mine = store.get("pp-mine", []);
 S.token = store.get("pp-editor", "");
+// On a dossier's own address (name.plainproof.me) the page names the dossier; every other
+// link leads back to the main site.
+const meta = n => document.querySelector(`meta[name="${n}"]`)?.content || "";
+const PIN_KEY = meta("pp-key"), HOME = meta("pp-home"), ROOT = meta("pp-root") || "plainproof.me";
 
 /* ---------- home rendering ---------- */
 const cSel = $("#fCountry");
@@ -206,6 +210,21 @@ async function refreshMine(){
 }
 
 /* ---------- form ---------- */
+/** Phone photos are large; scale them to 1800 px so three fit in the 4 MB limit. */
+async function shrinkImage(file){
+  if (!/^image\/(jpeg|png|webp)$/.test(file.type) || file.size < 900 * 1024) return file;
+  try {
+    const img = await createImageBitmap(file), k = Math.min(1, 1800 / Math.max(img.width, img.height));
+    const c = Object.assign(document.createElement("canvas"), { width: Math.round(img.width * k), height: Math.round(img.height * k) });
+    c.getContext("2d").drawImage(img, 0, 0, c.width, c.height);
+    const blob = await new Promise(res => c.toBlob(res, "image/jpeg", 0.82));
+    return blob && blob.size < file.size ? new File([blob], file.name.replace(/\.\w+$/, ".jpg"), { type: "image/jpeg" }) : file;
+  } catch { return file; }
+}
+$("#fFiles").addEventListener("change", e => {
+  const fs = [...e.target.files], kb = fs.reduce((n, f) => n + f.size, 0) / 1024;
+  $("#fFilesInfo").textContent = fs.length ? `${fs.length} file${fs.length > 1 ? "s" : ""} · ${kb > 1024 ? (kb / 1024).toFixed(1) + " MB" : Math.round(kb) + " KB"} · photos are reduced before sending` : "The research reads them to know what to look for. They are not published.";
+});
 const fText = $("#fText");
 fText.addEventListener("input", () => { $("#fCount").textContent = `${fText.value.length} / 1200`; });
 function formMsg(t, err){ const m = $("#fMsg"); m.hidden = !t; m.textContent = t || ""; m.classList.toggle("err", !!err); }
@@ -217,11 +236,20 @@ $("#rf").addEventListener("submit", async e => {
   if (!r.country) return formMsg("Choose the country where this is happening.", true);
   if (r.place.length < 2) return formMsg("Name the town, city or area so the research can find local sources.", true);
   if (r.text.length < 40) return formMsg("Describe the problem in at least two sentences (40 characters or more), so there is something to check.", true);
-  const btn = $("#fSubmit"); btn.disabled = true; formMsg("Sending…");
+  const files = [...$("#fFiles").files];
+  if (files.length > 3) return formMsg("Attach at most 3 files.", true);
+  const btn = $("#fSubmit"); btn.disabled = true; formMsg(files.length ? "Preparing files…" : "Sending…");
   try {
-    const saved = await api("/api/reports", { method: "POST", body: JSON.stringify(r) });
+    const fd = new FormData();
+    Object.entries(r).forEach(([k, v]) => fd.append(k, v));
+    for (const f of files) fd.append("files", await shrinkImage(f), f.name);
+    if (files.length && [...fd.getAll("files")].reduce((n, f) => n + f.size, 0) > 4 * 1024 * 1024) {
+      btn.disabled = false; return formMsg("Attachments can be 4 MB in total. Leave out a file or send a smaller one.", true);
+    }
+    formMsg("Sending…");
+    const saved = await api("/api/reports", { method: "POST", body: fd });
     if (saved.title) { S.mine.push(saved); store.set("pp-mine", S.mine.slice(-20)); S.status.set(saved.key, "received"); }
-    $("#rf").reset(); $("#fCount").textContent = "0 / 1200";
+    $("#rf").reset(); $("#fCount").textContent = "0 / 1200"; $("#fFiles").dispatchEvent(new Event("change"));
     formMsg("Received. Research has started; follow its progress here. It usually takes 10 to 20 minutes.");
     renderMine(); pollMine();
   } catch (err) {
@@ -295,7 +323,7 @@ function renderIssue(key, d){
   ${draft ? `<div class="draft"><div class="wrap"><span>Draft · held for review${d.reason ? " (" + esc(d.reason) + ")" : ""} · visible only to the editor</span><span style="display:flex;gap:8px"><button class="btn sm ghost" style="border-color:var(--bg);color:var(--bg)" data-act="reject" data-key="${esc(key)}">Reject</button><button class="btn sm" style="background:var(--bg);color:var(--ink);border-color:var(--bg)" data-act="publish" data-key="${esc(key)}">Publish</button></span></div></div>` : ""}
   <section class="hero"><canvas class="terrain" id="dzTerrain" aria-hidden="true"></canvas><div class="wrap">
     <div>
-      <div class="crumb"><a class="label" href="/#issues">← All issues</a><span class="chip" style="color:var(--issue)">${esc(whereOf(d))}</span><span class="chip" style="color:var(--muted)">${esc(d.category)}</span></div>
+      <div class="crumb"><a class="label" href="/#issues">← All issues</a><span class="chip" style="color:var(--issue)">${esc(whereOf(d))}</span><span class="chip" style="color:var(--muted)">${esc(d.category)}</span>${d.subdomain && !PIN_KEY ? `<a class="chip" style="color:var(--sea);text-decoration:none" href="https://${esc(d.subdomain)}.${esc(ROOT)}">${esc(d.subdomain)}.${esc(ROOT)} ↗</a>` : ""}</div>
       <h1>${esc(d.headline || d.title)}</h1>
       <p class="sum">${esc(d.summary)}</p>
       <p class="label" style="margin-top:18px">Reported ${fmtDate(d.submittedAt)} · researched ${fmtDate((d.method || {}).researchedAt || d.researchedAt)}${pub ? " · published " + fmtDate(pub.publishedAt) : ""}</p>
@@ -304,6 +332,7 @@ function renderIssue(key, d){
       <div class="facts"><div><b>${(d.claims||[]).length}</b><span class="label">claims</span></div><div><b>${(d.sources||[]).length}</b><span class="label">sources</span></div><div><b>${(d.method||{}).agents || 3}</b><span class="label">verifiers</span></div></div></div>
   </div></section>
 
+  <div id="ownSlot"></div>
   <section class="band"><div class="wrap">
     <div class="shead"><h2>The words, checked</h2><p>Highlighted phrases are what the reporter said. Hover or tap one to see the claim it became and what the record shows.</p></div>
     <div class="xwrap" id="xwrap"><svg class="links" id="links" aria-hidden="true"></svg>
@@ -337,7 +366,7 @@ function renderIssue(key, d){
   </div></section>
 
   <section class="band"><div class="wrap method"><span class="label">Method</span>
-    <p>${esc((d.method || {}).notes || "")}</p>
+    <p>${esc((d.method || {}).notes || "")}${(d.method || {}).attachments ? ` The reporter attached ${d.method.attachments} file${d.method.attachments > 1 ? "s" : ""}; they guided the research and are not published.` : ""}</p>
     <p>Verdicts: <b class="v-supported">Supported</b> when the sources confirm the claim; <b class="v-partly">Partly supported</b> when they confirm part of it or the scale differs; <b class="v-unsupported">Not supported</b> when the sources contradict it; <b class="v-unverifiable">Can't verify</b> when no reliable source addresses it. The evidence score weighs each claim's verdict by how many of the three verifiers agreed.</p>
   </div></section>`;
 
@@ -348,6 +377,66 @@ function renderIssue(key, d){
   }, 120));
   wireLinks();
   issueStops.push(constellation($("#constel"), d, cites));
+  renderOwnAddress(key, d);
+}
+
+/* ---------- own address (name.plainproof.me), paid through Paddle ---------- */
+let paddleCfg = null;
+const suggestName = key => key.replace(/-[0-9a-f]{6}$/, "").slice(0, 40).replace(/-+$/, "");
+async function renderOwnAddress(key, d){
+  const slot = $("#ownSlot"); if (!slot) return;
+  const mine = S.mine.some(m => m.key === key), editor = !!S.token;
+  if (PIN_KEY || d.stage !== "published" || d.subdomain || !(mine || editor)) return;
+  try { paddleCfg = paddleCfg || await api("/api/paddle"); } catch { paddleCfg = { enabled: false }; }
+  if (!paddleCfg.enabled && !editor) return;
+  const paid = paddleCfg.enabled && !editor;
+  slot.innerHTML = `<section class="band" style="padding-block:0 24px"><div class="wrap"><div class="ownbox">
+    <div><span class="label">${editor ? "Editor" : "Your dossier"}</span><h3>Give it its own address</h3>
+      <p>A short address of its own that you can share, with the same page and the same sources.${paid ? " One-time payment; the price is shown at checkout." : ""}</p></div>
+    <form id="ownForm" novalidate><div class="ownrow"><input id="ownName" maxlength="40" value="${esc(suggestName(key))}" aria-label="Address name" autocomplete="off"><span class="mono">.${esc(ROOT)}</span></div>
+      <div class="hint" id="ownMsg" style="margin:8px 0 12px">Lowercase letters, digits and hyphens.</div>
+      <button class="btn sea" type="submit">${paid ? "Continue to payment" : "Assign this address"}</button></form>
+  </div></div></section>`;
+  const msg = (t, err) => { const m = $("#ownMsg"); m.textContent = t; m.style.color = err ? "var(--bad)" : ""; };
+  $("#ownForm").addEventListener("submit", async e => {
+    e.preventDefault();
+    const name = $("#ownName").value.trim().toLowerCase(), btn = e.target.querySelector("button");
+    btn.disabled = true; msg("Checking the address…");
+    try {
+      const chk = await api("/api/subdomains?name=" + encodeURIComponent(name));
+      if (!chk.available) { msg(chk.problem, true); btn.disabled = false; return; }
+      if (!paid) { await api("/api/admin", { method: "POST", body: JSON.stringify({ act: "subdomain", key, name }) }); return reloadDossier(key); }
+      await openCheckout(key, name);
+      msg("Complete the payment in the window that opened.");
+    } catch (err) { msg(err.message || "Something went wrong. Try again.", true); }
+    btn.disabled = false;
+  });
+}
+function loadPaddle(){
+  if (window.Paddle) return Promise.resolve();
+  return new Promise((resolve, reject) => {
+    const s = document.createElement("script"); s.src = "https://cdn.paddle.com/paddle/v2/paddle.js";
+    s.onload = () => { if (paddleCfg.sandbox) Paddle.Environment.set("sandbox"); Paddle.Initialize({ token: paddleCfg.token, eventCallback: onPaddleEvent }); resolve(); };
+    s.onerror = () => reject(new Error("The payment window could not load. Check your connection and try again."));
+    document.head.appendChild(s);
+  });
+}
+let checkoutKey = "";
+async function openCheckout(key, name){
+  await loadPaddle(); checkoutKey = key;
+  Paddle.Checkout.open({ items: [{ priceId: paddleCfg.priceId, quantity: 1 }], customData: { key, subdomain: name }, settings: { displayMode: "overlay" } });
+}
+function onPaddleEvent(ev){
+  if (ev.name !== "checkout.completed" || !checkoutKey) return;
+  const m = $("#ownMsg"); if (m) m.textContent = "Payment received. The address goes live in a minute…";
+  reloadDossier(checkoutKey, 30);
+}
+/** Re-reads the dossier until its address appears (the payment webhook can take a few seconds). */
+async function reloadDossier(key, tries = 1){
+  for (let i = 0; i < tries; i++) {
+    try { const d = await api("/api/dossiers/" + encodeURIComponent(key)); if (d.subdomain || i === tries - 1) { S.full.set(key, d); if (location.pathname === "/i/" + key) renderIssue(key, d); return; } } catch {}
+    await new Promise(r => setTimeout(r, 4000));
+  }
 }
 
 function wireLinks(){
@@ -420,7 +509,7 @@ function renderReview(){
   const stopped = by(["failed", "rejected"]);
   $("#admStopped").innerHTML = stopped.length ? stopped.map(r => qrow(r, `${meta(r)} · ${esc(r.stage)}${r.reason ? " · " + esc(r.reason) : ""}${r.error ? " · " + esc(r.error) : ""}`, actBtn("retry", r.key, "Retry", "ghost"))).join("") : none("Nothing here.");
   const pubs = by(["published"]);
-  $("#admPub").innerHTML = pubs.length ? pubs.map(r => qrow(r, `${esc(whereOf(r))} · published ${fmtDate(r.published_at)}`, `<a class="btn sm ghost" href="/i/${esc(r.key)}">Open</a>${actBtn("unpublish", r.key, "Unpublish", "bad")}`)).join("") : none("Nothing published yet.");
+  $("#admPub").innerHTML = pubs.length ? pubs.map(r => qrow(r, `${esc(whereOf(r))} · published ${fmtDate(r.published_at)}${r.subdomain ? " · " + esc(r.subdomain) + "." + esc(ROOT) : ""}`, `<a class="btn sm ghost" href="/i/${esc(r.key)}">Open</a>${actBtn("unpublish", r.key, "Unpublish", "bad")}`)).join("") : none("Nothing published yet.");
 }
 async function loadAdmin(){
   if (!S.token) return renderReview();
@@ -446,13 +535,15 @@ document.addEventListener("click", e => {
   const u = new URL(a.href, location.href);
   if (u.origin !== location.origin || u.pathname.startsWith("/api/")) return;
   if (u.pathname === location.pathname && u.hash) return; // same page: let the browser scroll
+  if (PIN_KEY) { e.preventDefault(); location.href = HOME + u.pathname + u.hash; return; }
   e.preventDefault(); go(u.pathname + u.hash);
 });
 addEventListener("popstate", route);
 
 let viewSeq = 0;
 async function route(){
-  const path = location.pathname, isIssue = path.startsWith("/i/"), isReview = path === "/review", seq = ++viewSeq;
+  const path = PIN_KEY && location.pathname === "/" ? "/i/" + PIN_KEY : location.pathname;
+  const isIssue = path.startsWith("/i/"), isReview = path === "/review", seq = ++viewSeq;
   $("#vHome").hidden = isIssue || isReview; $("#vIssue").hidden = !isIssue; $("#vReview").hidden = !isReview;
   const navKey = isReview ? "review" : (location.hash.slice(1) || "");
   document.querySelectorAll(".nav a").forEach(a => a.setAttribute("aria-current", String(a.dataset.nav === navKey)));

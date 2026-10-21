@@ -6,7 +6,7 @@ export const dynamic = "force-dynamic";
 // GET /api/dossiers — every published dossier, trimmed to what the front page needs.
 export async function GET() {
   const rows = await db()`
-    select key, published_at,
+    select key, published_at, subdomain,
       dossier->>'headline' as headline, dossier->>'title' as title, dossier->>'summary' as summary,
       dossier->>'category' as category, dossier->>'country' as country, dossier->>'place' as place,
       (dossier->>'lat')::float as lat, (dossier->>'lon')::float as lon, dossier->'verdict' as verdict,

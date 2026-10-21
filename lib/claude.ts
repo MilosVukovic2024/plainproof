@@ -2,8 +2,9 @@ import Anthropic from "@anthropic-ai/sdk";
 
 // The two kinds of Claude call the pipeline makes. Tests swap this object for a fake.
 export type AI = {
-  /** Research with live web search. Returns the written notes and every page the search returned. */
-  search(system: string, prompt: string, maxSearches: number): Promise<{ text: string; urls: Found[] }>;
+  /** Research with live web search. Returns the written notes and every page the search returned.
+   *  `prompt` may be content blocks when the citizen attached files. */
+  search(system: string, prompt: string | Anthropic.ContentBlockParam[], maxSearches: number): Promise<{ text: string; urls: Found[] }>;
   /** No tools; the reply is JSON that matches `schema`. */
   json<T>(system: string, prompt: string, schema: object): Promise<T>;
 };

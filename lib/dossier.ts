@@ -18,7 +18,7 @@ export type Dossier = {
   timeline: { date: string; event: string; sourceId?: string }[];
   responsible: { name: string; role: string }[];
   verdict: { score: number; label: string };
-  method: { agents: number; notes: string; researchedAt: string };
+  method: { agents: number; notes: string; researchedAt: string; attachments?: number };
   submittedAt: string; researchedAt: string; publishedAt?: string;
 };
 

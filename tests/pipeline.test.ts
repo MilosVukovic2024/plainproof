@@ -11,11 +11,13 @@ const { ensureDatabase } = await import("../lib/setup");
 
 const TEXT = "The river below the bridge smells of sewage every summer. The plant was promised in 2019.";
 
-function fakeAI(opts: { checkable?: boolean; wrongdoing?: boolean; failSearch?: boolean } = {}): AI & { calls: string[] } {
-  const calls: string[] = [];
+function fakeAI(opts: { checkable?: boolean; wrongdoing?: boolean; failSearch?: boolean } = {}): AI & { calls: string[]; prompts: unknown[] } {
+  const calls: string[] = [], prompts: unknown[] = [];
   return {
-    calls,
-    async search(_s, prompt) {
+    calls, prompts,
+    async search(_s, input) {
+      prompts.push(input);
+      const prompt = typeof input === "string" ? input : JSON.stringify(input);
       calls.push(prompt.includes("You are verifier") ? "verify" : "research");
       if (opts.failSearch) throw new Error("search down");
       return { text: "notes", urls: [{ url: "https://vijesti.me/a/", title: "A" }, { url: "https://gov.me/b", title: "B" }] };
@@ -72,6 +74,23 @@ describe.skipIf(!url)("pipeline", () => {
     expect(d.claims[0].votes).toHaveLength(3);
     expect(d.verdict).toEqual({ score: 75, label: "Largely supported" });  // (100 + 50) / 2
     expect(d.phrases).toHaveLength(2);
+  });
+
+  it("gives the researcher the citizen's attachments, and says so on the dossier", async () => {
+    await insert("test-files");
+    const files = [{ name: "report.pdf", type: "application/pdf", size: 4, pathname: "p/report.pdf" },
+                   { name: "data.csv", type: "text/csv", size: 9, pathname: "p/data.csv" }];
+    await db()`update reports set files = ${db().json(files)} where key = 'test-files'`;
+    const store = { save: async () => { throw new Error("unused"); }, read: async (a: { name: string }) => Buffer.from(a.name === "data.csv" ? "year,days\n2024,40" : "%PDF") };
+    const ai = fakeAI();
+    for (let i = 0; i < 10 && await advance("test-files", ai, store); i++);
+    const research = ai.prompts[0] as any[];
+    expect(research.map(b => b.type)).toEqual(["document", "document", "text"]);
+    expect(research[0].source).toMatchObject({ type: "base64", media_type: "application/pdf" });
+    expect(research[1].source).toMatchObject({ type: "text", data: "year,days\n2024,40" });
+    expect(research[2].text).toContain("not independent sources");
+    expect(typeof ai.prompts[1]).toBe("string");                 // verifiers don't get the files
+    expect((await row("test-files")).dossier.method.attachments).toBe(2);
   });
 
   it("holds a dossier that names someone in a wrongdoing claim", async () => {

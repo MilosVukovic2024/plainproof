@@ -34,7 +34,13 @@ create table if not exists reports (
 );
 create index if not exists reports_stage_idx on reports (stage, updated_at);
 create index if not exists reports_published_idx on reports (published_at desc) where stage = 'published';
-create index if not exists reports_ip_idx on reports (ip_hash, created_at);`;
+create index if not exists reports_ip_idx on reports (ip_hash, created_at);
+
+-- Added after launch: citizen attachments, and a paid subdomain per dossier.
+alter table reports add column if not exists files jsonb not null default '[]';
+alter table reports add column if not exists subdomain text unique;
+alter table reports add column if not exists subdomain_txn text;
+alter table reports add column if not exists subdomain_at timestamptz;`;
 
 const SEEDS: Record<string, any> = { "pljevlja-winter-air": pljevlja, "russia-aggression-ukraine": ukraine };
 

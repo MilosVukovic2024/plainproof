@@ -16,4 +16,5 @@ export type ReportRow = {
   key: string; title: string; country: string; place: string; category: string; text: string; since: string;
   created_at: Date; stage: string; updated_at: Date; attempts: number; error: string | null; reason: string | null;
   research: any; votes: any; dossier: any; published_at: Date | null;
+  files: import("./files").Attachment[]; subdomain: string | null;
 };

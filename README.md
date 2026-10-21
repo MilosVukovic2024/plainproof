@@ -21,6 +21,9 @@ Each step saves its output, so a failed step is retried (3 attempts) without rep
 - `lib/page.ts` + `public/app.js` + `public/app.css` — the site (one HTML document)
 - `lib/setup.ts` — the single `reports` table, created on first start together with the two pilot dossiers in `db/seed/`
 
+- `lib/files.ts` — citizen attachments (PDF, images, CSV, Excel → CSV), stored privately in Vercel Blob and read only by the research step
+- `lib/subdomain.ts` — own addresses (`name.plainproof.me`): name rules, Paddle webhook signature, assignment
+
 Safeguards: only URLs that web search actually returned can be cited; highlighted phrases must occur in the citizen's text; 3 reports per IP per day and `MAX_REPORTS_PER_DAY` overall.
 
 ## Setup
@@ -29,6 +32,10 @@ Safeguards: only URLs that web search actually returned can be cited; highlighte
 2. **Database**: Project → Storage → Create Database → **Neon** → connect to the project. This sets `DATABASE_URL`; the table is created on the next start.
 3. **Environment Variables** (Project → Settings): `ANTHROPIC_API_KEY` (platform.claude.com → API keys) and `CRON_SECRET` (a long random password; it is also your key for `/review`). Then Deployments → Redeploy.
 4. **Domain**: remove any GoDaddy forwarding; Vercel → Settings → Domains → add `plainproof.me` and `www.plainproof.me`, then enter the DNS records Vercel shows in GoDaddy → DNS.
+
+5. **Attachments**: Storage → Create → **Blob** (private) → connect to the project (sets `BLOB_READ_WRITE_TOKEN`).
+6. **Own addresses**: move the domain's nameservers to Vercel (`ns1.vercel-dns.com`, `ns2.vercel-dns.com`) and add `*.plainproof.me` under Domains — wildcard domains need Vercel DNS.
+7. **Payments (Paddle)**: create a product with a one-time price; Developer tools → Authentication → client-side token; Notifications → new destination `https://www.plainproof.me/api/paddle` for `transaction.completed`. Set `PADDLE_CLIENT_TOKEN`, `PADDLE_PRICE_ID`, `PADDLE_WEBHOOK_SECRET`. Use the sandbox account first (token starts with `test_`). The editor can assign an address without payment from the dossier page.
 
 ## Development
 

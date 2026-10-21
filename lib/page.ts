@@ -1,10 +1,14 @@
 // The site is one HTML document; /app.js renders the home page, dossiers and the review
 // desk into it. The server only fills in the <head> so shared links get a proper preview.
 
-const SITE = "https://www.plainproof.me";
+import { ROOT } from "./subdomain";
+
+const SITE = `https://www.${ROOT}`;
 const esc = (s: string) => s.replace(/[&<>"']/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]!));
 
-export type Meta = { title: string; description: string; path: string; noindex?: boolean };
+// On a dossier's own address (name.plainproof.me) the page carries the dossier key, and the
+// canonical URL stays on the main site so search engines see one copy.
+export type Meta = { title: string; description: string; path: string; noindex?: boolean; dossierKey?: string };
 
 export const HOME_META: Meta = {
   title: "Plainproof — citizen claims, checked against the record",
@@ -23,6 +27,8 @@ export function html(meta: Meta, status = 200) {
 <meta name="description" content="${esc(meta.description)}">
 <link rel="canonical" href="${esc(url)}">
 ${meta.noindex ? '<meta name="robots" content="noindex">' : ""}
+<meta name="pp-root" content="${ROOT}">
+${meta.dossierKey ? `<meta name="pp-key" content="${esc(meta.dossierKey)}"><meta name="pp-home" content="${SITE}">` : ""}
 <meta property="og:type" content="article">
 <meta property="og:site_name" content="Plainproof">
 <meta property="og:title" content="${esc(meta.title)}">
@@ -101,6 +107,9 @@ const BODY = `<header class="top"><div class="wrap">
           <div class="count" id="fCount">0 / 1200</div></div>
         <div class="fld"><label for="fSince">Since when? <span class="hint">(optional)</span></label>
           <input id="fSince" maxlength="60" placeholder="e.g. every winter since 2019"></div>
+        <div class="fld"><label for="fFiles">Evidence files <span class="hint">(optional) PDF, photos, CSV or Excel · up to 3 files</span></label>
+          <input id="fFiles" type="file" multiple accept=".pdf,.jpg,.jpeg,.png,.webp,.csv,.txt,.xlsx">
+          <div class="hint" id="fFilesInfo">The research reads them to know what to look for. They are not published.</div></div>
         <div class="hp" aria-hidden="true"><label for="fWebsite">Website</label><input id="fWebsite" tabindex="-1" autocomplete="off"></div>
         <div id="fMsg" class="msg" hidden></div>
         <div><button class="btn" type="submit" id="fSubmit">Submit for research</button></div>
