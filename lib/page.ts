@@ -23,6 +23,7 @@ export function html(meta: Meta, status = 200) {
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="color-scheme" content="light">
 <title>${esc(meta.title)}</title>
 <meta name="description" content="${esc(meta.description)}">
 <link rel="canonical" href="${esc(url)}">
@@ -77,7 +78,7 @@ const BODY = `<header class="top"><div class="wrap">
       <div class="label maptag" id="mapTag">0 verified issues</div>
       <div class="stats" id="stats">
         <div><b data-count="0" id="stIssues">0</b><span class="label">Published dossiers</span></div>
-        <div><b data-count="0" id="stClaims">0</b><span class="label">Claims tested</span></div>
+        <div><b data-count="0" id="stClaims">0</b><span class="label">Points documented</span></div>
         <div><b data-count="0" id="stSources">0</b><span class="label">Sources cited</span></div>
         <div><b data-count="0" id="stMun">0</b><span class="label">Countries covered</span></div>
       </div>
@@ -85,7 +86,7 @@ const BODY = `<header class="top"><div class="wrap">
   </section>
 
   <section class="band" id="issues"><div class="wrap">
-    <div class="shead"><h2>Verified issues.</h2><p>Each dossier is a small site of its own: the reporter's words, every claim with its verdict, the numbers, the timeline and the sources.</p></div>
+    <div class="shead"><h2>Verified issues.</h2><p>Each dossier is a small site of its own: the reporter's words, every point with what the sources show, the numbers, the timeline and the sources.</p></div>
     <div class="cards" id="cards"></div>
   </div></section>
 
@@ -121,14 +122,14 @@ const BODY = `<header class="top"><div class="wrap">
   </div></section>
 
   <section class="band" id="how"><div class="wrap">
-    <div class="shead"><h2>How a report becomes a dossier.</h2><p>Each claim carries the verdicts of three verifiers who work separately and never see each other's notes. When they finish, the dossier builds and publishes itself.</p></div>
+    <div class="shead"><h2>How a report becomes a dossier.</h2><p>Three verifiers work separately and never see each other's notes; they make sure every fact on the page comes from a real source. Then the dossier builds and publishes itself.</p></div>
     <div class="story">
       <div class="story-visual" aria-hidden="true"><div class="story-num" id="storyNum">1</div><div class="story-name" id="storyName">You describe</div><div class="story-bar"><i id="storyBar"></i></div></div>
       <ol class="story-steps">
         <li data-step="1"><span class="k">Step 1</span><h3>You describe</h3><p>A few sentences in your own words and language. We keep your exact phrasing and translate it; your words are what gets tested.</p></li>
         <li data-step="2"><span class="k">Step 2</span><h3>Research</h3><p>Official statistics, budgets, audit and court records, agency monitoring data, newspapers, TV and portals, searched in the local languages and in English.</p></li>
-        <li data-step="3"><span class="k">Step 3</span><h3>Three verifiers</h3><p>Independent agents re-check every claim against the sources and search for contrary evidence. Disagreement lowers the verdict.</p></li>
-        <li data-step="4"><span class="k">Step 4</span><h3>Visualised</h3><p>The verified data becomes its own page automatically: your words linked to the verdicts, charts, a timeline and a map of the sources.</p></li>
+        <li data-step="3"><span class="k">Step 3</span><h3>Three verifiers</h3><p>Independent agents re-read every claim against the sources and search for contrary evidence.</p></li>
+        <li data-step="4"><span class="k">Step 4</span><h3>Visualised</h3><p>The verified data becomes its own page automatically: your words linked to the sources, charts, a timeline and a map of the sources.</p></li>
       </ol>
     </div>
   </div></section>

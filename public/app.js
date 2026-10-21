@@ -3,7 +3,6 @@
 "use strict";
 const WORLD = {"step":1.6,"lat0":76,"lon0":-179.2,"enc":"10.1.3.2.2.1.3.3.3.2.j.p.1e.4.h.d.f.2.o|10.1.4.1.f.1.j.n.1b.2.h.f.18|y.8.3.1.2.1.1.2.1.1.2.6.g.k.1b.3.8.2.1.1.3.u.7.1.o|0.1.d.1.k.2.3.7.5.3.2.b.b.k.1b.2.6.14.1.c.h.1|b.e.3.1.1.5.1.1.3.9.1.2.1.2.4.2.3.6.8.2.1.g.r.9.h.2.2.4.1.1i.1.1.4.4.2|0.2.7.w.4.3.3.1.1.4.2.2.3.2.1.4.8.d.u.g.2.2.2.e.1.1u|0.3.1.2.3.1.1.1d.6.8.5.c.b.1.i.d.1.3.2.h.1.1v|3.2.3.1e.1.2.3.7.9.7.b.6.f.7.2.6.1.2.1.2f|6.1.4.19.c.2.1.1.9.5.v.7.2.2q.1|9.19.a.4.e.4.u.7.3.2d.1.2.1.6.4|8.1.1.7.1.2.4.t.b.5.1b.8.3.1.3.26.4.4.8|e.2.b.r.a.6.1.2.10.1.6.2.2.3.4.22.b.2.b|d.1.f.s.8.9.z.2.7.1.1.3.3.21.b.4.b|a.1.k.u.3.b.y.3.6.1.7.1z.d.4.b|t.1.2.t.2.e.u.2.2.2.4.2b.1.1.8.3.c|x.t.1.f.s.2.1.4.2.2f.8.1.e|w.1.1.15.y.1.3.2f.1.1.n|y.1.1.x.1.2.4.3.v.2i.1.1.n|z.x.1.3.13.2g.2.1.n|z.14.11.j.2.1.2.6.4.1g.r|z.y.2.1.14.6.1.1.2.8.7.5.2.1h.4.2.m|z.x.13.7.5.3.2.6.8.5.2.1d.6.2.n|z.w.14.6.8.3.1.3.1.1.1.c.3.16.1.4.7.1.o|z.u.16.5.6.1.3.1.2.2.2.e.3.14.2.1.2.1.8.1.o|10.t.16.5.8.2.4.1.2.e.3.15.4.2.6.2.o|11.s.1c.6.g.1h.4.1.4.3.p|12.q.18.b.g.1h.7.1.1.1.r|13.o.18.e.d.1i.6.2.t|14.1.1.k.18.h.2.5.1.1.2.1j.10|14.1.1.c.1.2.3.2.18.11.1.19.10|15.1.1.9.9.1.17.12.2.17.11|16.1.1.8.9.1.16.u.1.9.4.13.12|16.1.2.7.1f.v.2.9.2.1.6.x.1.1.10|1a.5.1f.x.2.c.7.t.14|1b.5.b.1.12.y.1.d.6.b.3.a.1.1.17|1b.5.4.2.6.2.10.y.2.b.9.8.5.8.2.1.17|1c.5.1.3.9.5.v.y.2.a.a.7.6.8.1a|1e.7.19.z.2.7.c.6.8.8.8.1.10|1i.6.16.10.1.6.e.4.b.7.6.1.11|1k.4.16.11.1.2.h.4.b.7.8.1.z|1m.2.7.1.y.12.k.2.c.1.2.4.9.1.y|1n.1.5.6.1.1.u.15.g.2.c.1.3.2.9.2.y|1o.4.1.a.t.14.g.1.1.1.b.1.f.1.y|1s.c.t.13.i.2.q.2.x|1s.f.r.7.3.r.w.2.8.2.12|1s.g.12.o.v.1.1.2.7.2.13|1r.i.12.m.x.1.1.1.5.4.13|1q.j.11.m.y.3.4.5.2.2.2.1.w|1q.l.z.l.10.2.4.5.1.1.1.1.5.1.t|1r.m.y.j.12.2.3.4.2.2.9.2.p|1q.r.u.i.14.2.8.2.8.6.m|1q.t.t.h.15.1.8.1.b.5.1.2.i|1r.s.u.g.16.4.g.5.l|1r.s.u.g.1d.3.2.1.8.2.2.1.k|1s.q.v.h.1w.1.6.1.b|1s.p.w.h.1l.1.1.1.3.1.n|1t.n.w.i.5.1.1e.4.3.1.n|1t.n.w.i.4.2.1a.7.4.2.m|1v.l.w.h.3.4.19.a.2.3.k.1|1x.j.w.f.5.3.1a.f.l|1x.i.y.d.6.3.18.i.k|1x.i.y.e.5.3.16.l.a.1.8|1x.g.10.e.5.2.16.n.i|1w.f.13.c.6.2.16.o.h|1w.e.14.b.1e.p.h|1w.e.14.b.1f.o.h|1w.d.16.9.1g.o.h|1w.d.17.7.1i.n.h|1w.c.18.6.1j.6.5.c.h|1v.c.19.1.1o.2.a.a.i|1v.a.3f.6.f.1.3|1v.a.3f.6.g.1.2|1v.7.43.2.2|1u.8.42.1.1.1.2|1u.7.3m.2.e.2.4|1v.5.42.2.5|1u.4.43.2.6|1u.5.4a|1t.5.4b|1t.4.4c|1u.4.4.2.45|1u.4.4b|1x.1.1.1.49","countries":[["Afghanistan",33.82,65.93],["Åland",60.23,19.94],["Albania",41.13,20.05],["Algeria",28.06,2.63],["American Samoa",-14.3,-170.72],["Andorra",42.54,1.56],["Angola",-12.31,17.56],["Anguilla",18.22,-63.07],["Antigua and Barbuda",17.08,-61.79],["Argentina",-34.54,-64.75],["Armenia",40.29,44.94],["Aruba",12.52,-69.98],["Australia",-25.63,134.21],["Austria",47.59,14.11],["Azerbaijan",40.34,47.67],["Bahamas",24.7,-78.04],["Bahrain",26.04,50.54],["Bangladesh",23.89,90.23],["Barbados",13.18,-59.56],["Belarus",53.52,28.02],["Belgium",50.64,4.65],["Belize",17.19,-88.72],["Benin",9.64,2.33],["Bermuda",32.31,-64.76],["Bhutan",27.41,90.4],["Bolivia",-16.68,-64.7],["Bosnia and Herzegovina",44.17,17.77],["Botswana",-22.17,23.81],["Brazil",-10.69,-53.24],["British Virgin Islands",18.42,-64.62],["Brunei",4.49,114.59],["Bulgaria",42.77,25.21],["Burkina Faso",12.27,-1.76],["Burundi",-3.36,29.88],["Cabo Verde",15.08,-23.64],["Cambodia",12.72,104.91],["Cameroon",5.68,12.73],["Canada",58.59,-99],["Cayman Islands",19.32,-81.29],["Central African Republic",6.57,20.46],["Chad",15.28,18.64],["Chile",-34.36,-70.95],["China",36.76,103.35],["Colombia",3.9,-73.08],["Comoros",-11.65,43.34],["Congo",-0.84,15.22],["Cook Islands",-21.22,-159.79],["Costa Rica",9.98,-84.19],["Côte d'Ivoire",7.63,-5.57],["Croatia",45.16,16.42],["Cuba",21.63,-78.91],["Curaçao",12.2,-68.97],["Cyprus",34.92,33.01],["Czechia",49.74,15.32],["Denmark",56.23,9.35],["Djibouti",11.75,42.56],["Dominica",15.44,-61.36],["Dominican Republic",18.9,-70.51],["DR Congo",-2.87,23.64],["Ecuador",-1.44,-78.39],["Egypt",26.46,29.88],["El Salvador",13.74,-88.87],["Equatorial Guinea",1.57,10.47],["Eritrea",15.36,38.85],["Estonia",58.68,25.84],["eSwatini",-26.56,31.48],["Ethiopia",8.61,39.61],["Falkland Islands",-51.74,-58.76],["Faroe Islands",62.17,-6.88],["Fiji",-17.82,177.97],["Finland",64.26,26.21],["France",46.57,2.46],["French Polynesia",-17.66,-149.42],["Gabon",-0.59,11.79],["Gambia",13.45,-15.4],["Georgia",42.17,43.52],["Germany",51.03,10.35],["Ghana",7.95,-1.22],["Greece",39.46,22.57],["Greenland",73.08,-41.8],["Grenada",12.12,-61.68],["Guam",13.44,144.77],["Guatemala",15.69,-90.37],["Guernsey",49.47,-2.57],["Guinea",10.44,-10.93],["Guinea-Bissau",12.06,-14.92],["Guyana",4.79,-58.98],["Haiti",18.93,-72.68],["Honduras",14.83,-86.62],["Hong Kong",22.44,114.14],["Hungary",47.17,19.38],["Iceland",65,-18.58],["India",22.8,79.53],["Indonesia",-0.19,114.01],["Iran",32.53,54.44],["Iraq",33.01,43.77],["Ireland",53.16,-8.14],["Isle of Man",54.22,-4.54],["Israel",31.45,35],["Italy",43.49,12.3],["Jamaica",18.16,-77.31],["Japan",36.63,137.88],["Jersey",49.22,-2.13],["Jordan",31.24,36.76],["Kazakhstan",48.36,67.25],["Kenya",0.6,37.8],["Kiribati",1.85,-157.37],["Kosovo",42.57,20.87],["Kuwait",29.32,47.56],["Kyrgyzstan",41.47,74.51],["Laos",18.49,103.78],["Latvia",56.86,24.92],["Lebanon",33.92,35.88],["Lesotho",-29.58,28.23],["Liberia",6.45,-9.32],["Libya",27.02,18.07],["Liechtenstein",47.14,9.54],["Lithuania",55.32,23.9],["Luxembourg",49.77,6.07],["Macao",22.22,113.51],["Macedonia",41.6,21.68],["Madagascar",-19.32,46.74],["Malawi",-13.21,34.28],["Malaysia",3.62,114.72],["Maldives",4.2,73.5],["Mali",17.32,-3.59],["Malta",35.89,14.44],["Marshall Islands",7.11,171.19],["Mauritania",20.22,-10.37],["Mauritius",-20.28,57.57],["Mexico",23.92,-102.15],["Micronesia",6.89,158.23],["Moldova",47.19,28.47],["Monaco",43.75,7.41],["Mongolia",46.96,103.12],["Montenegro",42.79,19.24],["Montserrat",16.74,-62.19],["Morocco",29.77,-8.73],["Mozambique",-17.2,35.6],["Myanmar",21.15,96.49],["Namibia",-22.07,17.2],["Nauru",-0.52,166.93],["Nepal",28.26,83.95],["Netherlands",52.28,5.63],["New Caledonia",-21.32,165.48],["New Zealand",-43.95,170.61],["Nicaragua",12.85,-85.03],["Niger",17.41,9.33],["Nigeria",9.59,8.08],["Niue",-19.05,-169.87],["Norfolk Island",-29.05,167.95],["North Korea",40.14,127.16],["Northern Cyprus",35.26,33.57],["Northern Mariana Islands",15.18,145.74],["Norway",63.79,12.16],["Oman",20.56,56.06],["Pakistan",29.88,69.17],["Palau",7.51,134.58],["Palestine",31.95,35.25],["Panama",8.53,-80.11],["Papua New Guinea",-6.6,144.23],["Paraguay",-23.21,-58.44],["Peru",-9.11,-74.42],["Philippines",15.95,121.42],["Poland",52.11,19.42],["Portugal",39.65,-7.98],["Puerto Rico",18.23,-66.48],["Qatar",25.3,51.18],["Romania",45.85,24.98],["Russia",65.89,95.53],["Rwanda",-1.99,29.92],["Saint Helena",-15.96,-5.72],["Saint Kitts and Nevis",17.33,-62.75],["Saint Lucia",13.89,-60.97],["Saint Pierre and Miquelon",46.94,-56.33],["Saint Vincent and the Grenadines",13.25,-61.2],["Samoa",-13.63,-172.44],["San Marino",43.94,12.46],["São Tomé and Principe",0.24,6.61],["Saudi Arabia",24.09,44.67],["Senegal",14.36,-14.47],["Serbia",44.21,20.81],["Seychelles",-4.66,55.48],["Sierra Leone",8.57,-11.79],["Singapore",1.36,103.82],["Sint Maarten",18.05,-63.06],["Slovakia",48.71,19.47],["Slovenia",46.12,14.8],["Solomon Islands",-9.62,160.17],["Somalia",4.74,45.68],["Somaliland",9.74,46.25],["South Africa",-28.97,25.19],["South Korea",36.45,127.87],["South Sudan",7.31,30.25],["Spain",40.37,-3.57],["Sri Lanka",7.61,80.7],["St-Barthélemy",17.9,-62.84],["St-Martin",18.09,-63.06],["Sudan",15.97,29.91],["Suriname",4.13,-55.91],["Sweden",62.43,16.25],["Switzerland",46.8,8.21],["Syria",35.02,38.49],["Taiwan",23.75,120.96],["Tajikistan",38.53,71.03],["Tanzania",-6.27,34.79],["Thailand",15.1,101],["Timor-Leste",-8.81,125.92],["Togo",8.52,0.96],["Tonga",-21.17,-175.22],["Trinidad and Tobago",10.42,-61.29],["Tunisia",34.09,9.55],["Turkey",39.06,35.41],["Turkmenistan",39.13,59.45],["Turks and Caicos Islands",21.81,-71.74],["U.S. Virgin Islands",17.74,-64.77],["Uganda",1.27,32.37],["Ukraine",49.2,31.32],["United Arab Emirates",23.9,54.3],["United Kingdom",53.83,-2.41],["United States",39.89,-98.82],["Uruguay",-32.79,-56.03],["Uzbekistan",41.78,63.29],["Vanuatu",-15.23,166.85],["Vatican",41.9,12.43],["Venezuela",7.12,-66.18],["Vietnam",16.55,106.35],["Wallis and Futuna",-14.29,-178.13],["Western Sahara",24.21,-12.27],["Yemen",15.94,47.52],["Zambia",-13.46,27.81],["Zimbabwe",-19,29.85]]};
 const COUNTRY = new Map(WORLD.countries.map(c => [c[0], [c[1], c[2]]]));
-const VERD = {supported:"Supported",partly:"Partly supported",unsupported:"Not supported",unverifiable:"Can't verify"};
 const TYPES = [["official","Official data"],["news","Newspapers"],["tv","Television"],["portal","Portals"],["ngo","NGOs & intl."]];
 const STAGES = ["received","researching","verifying","published"];
 const STAGE_TXT = {received:"Received — research starts in a moment",researching:"Researching sources",verifying:"Three verifiers are checking the claims",review:"Held for a manual check before publishing",published:"Published",rejected:"Not published — the record could not support a dossier",failed:"Research could not finish; the editor can retry it"};
@@ -21,8 +20,6 @@ const issueHue = key => [195, 158, 28, 350, 262, 205, 42, 128][hashStr(key) % 8]
 let TOK = {};
 function readTokens(){ const cs = getComputedStyle(document.documentElement); for (const k of ["ink","muted","line","contour","contour-strong","sea","amber","bg","issue","c-official","c-news","c-tv","c-portal","c-ngo"]) TOK[k] = cs.getPropertyValue("--"+k).trim(); }
 readTokens();
-matchMedia("(prefers-color-scheme: dark)").addEventListener("change", readTokens);
-new MutationObserver(readTokens).observe(document.documentElement, {attributes:true, attributeFilter:["data-theme"]});
 
 /* ---------- noise + living contour terrain ---------- */
 function makeNoise(seed){
@@ -166,7 +163,6 @@ cSel.innerHTML = '<option value="">Choose…</option>' + WORLD.countries.map(c =
 function countUp(el, to){ const from = +el.dataset.count || 0; el.dataset.count = to; if (reduced || from === to) { el.textContent = to; return; }
   const t0 = performance.now(); const step = now => { const p = Math.min(1, (now - t0) / 900); el.textContent = Math.round(from + (to - from) * (1 - Math.pow(1 - p, 3))); if (p < 1) requestAnimationFrame(step); }; requestAnimationFrame(step); }
 
-const verdClass = s => s >= 70 ? "v-supported" : s >= 40 ? "v-partly" : s >= 0 ? "v-unsupported" : "v-unverifiable";
 let cardsSig = "";
 function renderHome(){
   const pubs = [...S.published.values()];
@@ -183,11 +179,11 @@ function renderHome(){
     box.innerHTML = `<div class="empty" style="grid-column:1/-1"><h3>${S.loaded ? "No dossiers published yet" : "Loading…"}</h3><p>Verified issues appear here when research and verification finish. Each one opens as its own page with the claims, numbers, timeline and sources.</p><a class="btn sm ghost" href="/#report">Report the first issue</a></div>`;
     return;
   }
-  box.innerHTML = pubs.map(d => { const v = d.verdict || {}; return `<a class="card" href="/i/${esc(d.key)}" style="--ih:${issueHue(d.key)}">
+  box.innerHTML = pubs.map(d => `<a class="card" href="/i/${esc(d.key)}" style="--ih:${issueHue(d.key)}">
     <div class="label">${esc(whereOf(d))} · ${esc(d.category)}</div>
     <h3>${esc(d.headline || d.title)}</h3>
     <p class="sum">${esc(d.summary)}</p>
-    <div class="meta"><span class="chip ${verdClass(v.score)}">${esc(v.label || "")}</span><span class="label">${d.claimCount} claims · ${d.sourceCount} sources</span></div></a>`; }).join("");
+    <div class="meta"><span class="label">${d.claimCount} points · ${d.sourceCount} sources</span><span class="go" aria-hidden="true">›</span></div></a>`).join("");
   reveal(box);
 }
 
@@ -286,14 +282,6 @@ function chartSVG(f){
   const ref = refV !== null ? `<line x1="${ml}" x2="${W - mr}" y1="${y(refV)}" y2="${y(refV)}" stroke="var(--bad)" stroke-width="1.5" stroke-dasharray="5 4"/><text x="${W - mr}" y="${y(refV) - 6}" text-anchor="end" font-size="11.5" font-weight="600" fill="var(--bad)" font-family="Inter,system-ui,sans-serif">${esc(f.reference.label || "")}</text>` : "";
   return `<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="${esc(f.title)}">${g}${marks}${ref}<line x1="${ml}" x2="${W - mr}" y1="${y(0)}" y2="${y(0)}" stroke="var(--ink)" stroke-width="1.2"/>${xl}</svg>`;
 }
-function gaugeSVG(score){
-  const r = 94, c = 2 * Math.PI * r, s = Math.max(0, Math.min(100, +score || 0)), col = s >= 70 ? "var(--ok)" : s >= 40 ? "var(--part)" : "var(--bad)";
-  return `<svg viewBox="0 0 220 220" role="img" aria-label="Evidence score ${s} of 100">
-    <circle cx="110" cy="110" r="${r}" fill="none" stroke="var(--line)" stroke-opacity=".55" stroke-width="12"/>
-    <circle cx="110" cy="110" r="${r}" fill="none" stroke="${col}" stroke-width="12" stroke-linecap="round" transform="rotate(-90 110 110)" stroke-dasharray="${c}" stroke-dashoffset="${c}" style="transition:stroke-dashoffset 1.8s cubic-bezier(.22,.8,.16,1)" data-to="${c * (1 - s / 100)}"/>
-    <text x="110" y="124" text-anchor="middle" font-family="Inter,system-ui,sans-serif" font-weight="700" font-size="64" letter-spacing="-3" fill="var(--ink)" data-score="${s}">0</text>
-    <text x="110" y="152" text-anchor="middle" font-family="Inter,system-ui,sans-serif" font-weight="600" font-size="11" letter-spacing=".6" fill="var(--muted)">EVIDENCE / 100</text></svg>`;
-}
 function buildQuote(text, phrases){
   const spans = [];
   (phrases || []).forEach(ph => { const i = text.toLowerCase().indexOf(String(ph.text || "").toLowerCase()); if (i >= 0 && ph.text) spans.push({s: i, e: i + ph.text.length, claimId: ph.claimId}); });
@@ -316,7 +304,6 @@ function renderIssue(key, d){
   const cites = {}; (d.claims || []).forEach(c => (c.sourceIds || []).forEach(id => cites[id] = (cites[id] || 0) + 1));
   (d.figures || []).forEach(f => f.sourceId && (cites[f.sourceId] = (cites[f.sourceId] || 0) + 1));
   const sref = ids => (ids || []).filter(id => src.has(id)).map(id => `<a class="sref" href="#src-${esc(id)}" data-src="${esc(id)}">${esc(id)}</a>`).join("");
-  const vv = d.verdict || {};
   v.innerHTML = `
   ${draft ? `<div class="draft"><div class="wrap"><span>Draft · held for review${d.reason ? " (" + esc(d.reason) + ")" : ""} · visible only to the editor</span><span style="display:flex;gap:8px"><button class="btn sm ghost" style="border-color:var(--bg);color:var(--bg)" data-act="reject" data-key="${esc(key)}">Reject</button><button class="btn sm" style="background:var(--bg);color:var(--ink);border-color:var(--bg)" data-act="publish" data-key="${esc(key)}">Publish</button></span></div></div>` : ""}
   <section class="hero"><canvas class="terrain" id="dzTerrain" aria-hidden="true"></canvas><div class="wrap">
@@ -326,20 +313,19 @@ function renderIssue(key, d){
       <p class="sum">${esc(d.summary)}</p>
       <p class="label" style="margin-top:18px">Reported ${fmtDate(d.submittedAt)} · researched ${fmtDate((d.method || {}).researchedAt || d.researchedAt)}${pub ? " · published " + fmtDate(pub.publishedAt) : ""}</p>
     </div>
-    <div class="gauge">${gaugeSVG(vv.score)}<div class="lbl ${verdClass(vv.score)}">${esc(vv.label)}</div>
-      <div class="facts"><div><b>${(d.claims||[]).length}</b><span class="label">claims</span></div><div><b>${(d.sources||[]).length}</b><span class="label">sources</span></div><div><b>${(d.method||{}).agents || 3}</b><span class="label">verifiers</span></div></div></div>
+    <div class="facts">${[[(d.sources||[]).length, "sources"], [(d.figures||[]).length, "data series"], [(d.timeline||[]).length, "dated events"]].filter(f => f[0]).map(f => `<div><b data-count="0" data-to="${f[0]}">0</b><span class="label">${f[1]}</span></div>`).join("")}</div>
   </div></section>
 
   <div id="ownSlot"></div>
   <section class="band"><div class="wrap">
-    <div class="shead"><h2>The words, checked</h2><p>Highlighted phrases are what the reporter said. Hover or tap one to see the claim it became and what the record shows.</p></div>
+    <div class="shead"><h2>Your words, and the record</h2><p>Highlighted phrases are what the reporter said. Hover or tap one to see what the sources show about it.</p></div>
     <div class="xwrap" id="xwrap"><svg class="links" id="links" aria-hidden="true"></svg>
       <div class="words"><span class="label">The report, as submitted${d.language && !/^english$/i.test(d.language) ? " in " + esc(d.language) : ""}</span><blockquote class="quote" id="quote">${buildQuote(d.citizenText || "", d.phrases)}</blockquote>
         ${d.citizenTextEn ? `<p class="label" style="margin-top:16px">English translation</p><p style="margin-top:6px;color:var(--muted);font-size:16px;max-width:60ch">${esc(d.citizenTextEn)}</p>` : ""}</div>
       <div class="claims">${(d.claims || []).map(c => `<article class="claim" id="cl-${esc(c.id)}" data-claim="${esc(c.id)}">
-        <div class="ch"><span class="q"><span class="mono" style="color:var(--muted);font-weight:500">${esc(c.id)} </span>${esc(c.claim)}</span><span class="chip v-${esc(c.verdict)}">${esc(VERD[c.verdict] || c.verdict)}</span></div>
+        <div class="ch"><span class="q"><span class="mono" style="color:var(--muted);font-weight:500">${esc(c.id)} </span>${esc(c.claim)}</span></div>
         <p class="ex">${esc(c.explanation)}</p>
-        <div class="foot"><div class="votes" aria-label="Verifier verdicts">${(c.votes || []).map(vo => `<span class="vote v-${esc(vo.verdict)}" title="Verifier ${esc(vo.agent)}: ${esc(VERD[vo.verdict] || vo.verdict)}${vo.note ? " — " + esc(vo.note) : ""}"><span>${esc(vo.agent)}</span></span>`).join("")}<span class="label" style="margin-left:6px">verifiers</span></div><div class="srcs">${sref(c.sourceIds)}</div></div>
+        <div class="foot"><div class="srcs">${sref(c.sourceIds)}</div></div>
       </article>`).join("")}</div>
     </div>
   </div></section>
@@ -365,13 +351,12 @@ function renderIssue(key, d){
 
   <section class="band"><div class="wrap method"><span class="label">Method</span>
     <p>${esc((d.method || {}).notes || "")}${(d.method || {}).attachments ? ` The reporter attached ${d.method.attachments} file${d.method.attachments > 1 ? "s" : ""}; they guided the research and are not published.` : ""}</p>
-    <p>Verdicts: <b class="v-supported">Supported</b> when the sources confirm the claim; <b class="v-partly">Partly supported</b> when they confirm part of it or the scale differs; <b class="v-unsupported">Not supported</b> when the sources contradict it; <b class="v-unverifiable">Can't verify</b> when no reliable source addresses it. The evidence score weighs each claim's verdict by how many of the three verifiers agreed.</p>
+    <p>Every source on this page was found by the research and re-read by three independent verifiers before publication. Follow the links and judge for yourself.</p>
   </div></section>`;
 
   const tr = terrain($("#dzTerrain"), {seed: hashStr(key), accent: "issue", levels: 13, speed: .8}); issueStops.push(tr.stop);
   requestAnimationFrame(() => setTimeout(() => {
-    const arc = v.querySelector("circle[data-to]"); if (arc) arc.style.strokeDashoffset = arc.dataset.to;
-    const num = v.querySelector("text[data-score]"); if (num) { const to = +num.dataset.score; if (reduced) num.textContent = to; else { const t0 = performance.now(); const st = now => { const p = Math.min(1, (now - t0) / 1600); num.textContent = Math.round(to * (1 - Math.pow(1 - p, 3))); if (p < 1) requestAnimationFrame(st); }; requestAnimationFrame(st); } }
+    v.querySelectorAll(".facts b[data-to]").forEach(b => countUp(b, +b.dataset.to));
   }, 120));
   wireLinks();
   issueStops.push(constellation($("#constel"), d, cites));
@@ -501,7 +486,7 @@ function renderReview(){
   const rows = S.admin, by = st => rows.filter(r => st.includes(r.stage));
   const meta = r => `${esc(whereOf(r))} · ${esc(r.category)} · ${fmtDate(r.created_at)}`;
   const held = by(["review"]);
-  $("#admReview").innerHTML = held.length ? held.map(r => qrow(r, `${meta(r)} · ${r.claimCount} claims · ${r.sourceCount} sources · score ${esc((r.verdict || {}).score)}${r.reason ? " · " + esc(r.reason) : ""}`,
+  $("#admReview").innerHTML = held.length ? held.map(r => qrow(r, `${meta(r)} · ${r.claimCount} points · ${r.sourceCount} sources${r.reason ? " · " + esc(r.reason) : ""}`,
     `${r.headline ? `<a class="btn sm ghost" href="/i/${esc(r.key)}">Read the draft</a>` : ""}${actBtn("reject", r.key, "Reject", "bad")}${r.headline ? actBtn("publish", r.key, "Publish", "sea") : ""}`)).join("") : none("No dossiers waiting.");
   const queue = by(["received", "researching", "verifying"]);
   $("#admQueue").innerHTML = queue.length ? queue.map(r => qrow(r, `${meta(r)} · ${esc(STAGE_TXT[r.stage])}`, "")).join("") : none("The queue is empty.");
@@ -569,7 +554,7 @@ const revealIO = !reduced && "IntersectionObserver" in window && new Intersectio
 }), { rootMargin: "0px 0px -8% 0px", threshold: .08 });
 function reveal(root){
   if (!revealIO) return;
-  root.querySelectorAll(".shead, .card, .fig, .claim, .tl .ev, .resp > div, .track, .ownbox, .constel, .quote, .gauge, .empty").forEach((el, i) => {
+  root.querySelectorAll(".shead, .card, .fig, .claim, .tl .ev, .resp > div, .track, .ownbox, .constel, .quote, .facts, .empty").forEach((el, i) => {
     if (el.classList.contains("rv")) return;
     el.classList.add("rv");
     el.style.transitionDelay = (el.matches(".card, .resp > div, .fig") ? (i % 3) * 90 : 0) + "ms";
