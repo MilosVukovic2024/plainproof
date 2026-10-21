@@ -19,19 +19,16 @@ Each step saves its output, so a failed step is retried (3 attempts) without rep
 - `lib/pipeline.ts` — the three steps and their prompts
 - `lib/dossier.ts` — verdict rules (majority of three; evidence score) and the pre-publication check
 - `lib/page.ts` + `public/app.js` + `public/app.css` — the site (one HTML document)
-- `db/schema.sql` — the single `reports` table; `db/seed/` — the two dossiers from the pilot
+- `lib/setup.ts` — the single `reports` table, created on first start together with the two pilot dossiers in `db/seed/`
 
 Safeguards: only URLs that web search actually returned can be cited; highlighted phrases must occur in the citizen's text; 3 reports per IP per day and `MAX_REPORTS_PER_DAY` overall.
 
 ## Setup
 
-1. **Supabase** → new project (region: Frankfurt). Project Settings → Database → Connection string → *Transaction pooler* (port 6543). That is `DATABASE_URL`.
-2. Create the table and load the pilot dossiers, once, from your computer:
-   `DATABASE_URL=… npm install && npm run db:setup`
-   (or paste `db/schema.sql` into Supabase → SQL Editor; that creates the table without the two pilot dossiers).
-3. **Claude API key** at platform.claude.com → API keys.
-4. **Vercel** → Add New Project → import this repo → Environment Variables from `.env.example` → Deploy.
-5. **Domain**: Vercel → Project → Settings → Domains → add `plainproof.me` and `www.plainproof.me`. Vercel shows the DNS records; add them in GoDaddy → Domain → DNS (usually an `A` record for `@` and a `CNAME` for `www`). Remove any GoDaddy forwarding first.
+1. **Vercel** → Add New → Project → import this repo → Deploy.
+2. **Database**: Project → Storage → Create Database → **Neon** → connect to the project. This sets `DATABASE_URL`; the table is created on the next start.
+3. **Environment Variables** (Project → Settings): `ANTHROPIC_API_KEY` (platform.claude.com → API keys) and `CRON_SECRET` (a long random password; it is also your key for `/review`). Then Deployments → Redeploy.
+4. **Domain**: remove any GoDaddy forwarding; Vercel → Settings → Domains → add `plainproof.me` and `www.plainproof.me`, then enter the DNS records Vercel shows in GoDaddy → DNS.
 
 ## Development
 

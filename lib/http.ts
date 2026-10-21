@@ -9,10 +9,10 @@ function bearerMatches(req: Request, secret: string | undefined) {
   const want = Buffer.from(secret);
   return got.length === want.length && timingSafeEqual(got, want);
 }
-/** The editor (review desk). */
-export const isEditor = (req: Request) => bearerMatches(req, process.env.ADMIN_TOKEN);
-/** Vercel Cron and the pipeline calling itself. */
-export const isInternal = (req: Request) => bearerMatches(req, process.env.CRON_SECRET);
+// One secret, CRON_SECRET, serves three callers: Vercel Cron (which sends it automatically),
+// the pipeline calling itself, and the editor, who types it on /review.
+export const isEditor = (req: Request) => bearerMatches(req, process.env.CRON_SECRET);
+export const isInternal = isEditor;
 
 /** A salted hash of the client IP, for rate limits; the IP itself is never stored. */
 export function ipHash(req: Request) {

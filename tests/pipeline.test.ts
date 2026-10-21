@@ -1,6 +1,5 @@
 // Runs the whole pipeline against a real Postgres with a fake Claude.
 // TEST_DATABASE_URL=postgres://... npm test   (skipped when not set)
-import { readFileSync } from "node:fs";
 import { afterAll, beforeAll, beforeEach, describe, expect, it } from "vitest";
 import type { AI } from "../lib/claude";
 
@@ -8,6 +7,7 @@ const url = process.env.TEST_DATABASE_URL;
 if (url) process.env.DATABASE_URL = url;
 const { db } = await import("../lib/db");
 const { advance, due } = await import("../lib/pipeline");
+const { ensureDatabase } = await import("../lib/setup");
 
 const TEXT = "The river below the bridge smells of sewage every summer. The plant was promised in 2019.";
 
@@ -53,7 +53,7 @@ const insert = (key: string) => db()`insert into reports (key, title, country, p
 async function runAll(key: string, ai: AI) { for (let i = 0; i < 10 && await advance(key, ai); i++); }
 
 describe.skipIf(!url)("pipeline", () => {
-  beforeAll(async () => { await db().unsafe(readFileSync(new URL("../db/schema.sql", import.meta.url), "utf8")); });
+  beforeAll(async () => { await ensureDatabase(); });
   beforeEach(async () => { await db()`delete from reports where key like 'test-%'`; });
   afterAll(async () => { await db()`delete from reports where key like 'test-%'`; await db().end(); });
 
