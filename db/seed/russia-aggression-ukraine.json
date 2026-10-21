@@ -1,0 +1,277 @@
+{
+ "category": "Other",
+ "citizenText": "russia agression on ukraine which started in 2022",
+ "claims": [
+  {
+   "claim": "Russia has carried out military aggression against Ukraine.",
+   "explanation": "On 2 March 2022 the UN General Assembly adopted resolution ES-11/1, titled 'Aggression against Ukraine', by 141 votes to 5 with 35 abstentions, demanding withdrawal of Russian forces. On 9 July 2025 the European Court of Human Rights Grand Chamber found Russia responsible for grave and systematic violations in Ukraine.",
+   "id": "C1",
+   "sourceIds": [
+    "S1",
+    "S2",
+    "S3"
+   ],
+   "verdict": "supported",
+   "votes": [
+    {
+     "agent": "A",
+     "note": "UNGA ES-11/1 'Aggression against Ukraine' (2 Mar 2022, 141-5-35); ECtHR Grand Chamber July 2025 found grave Russian violations.",
+     "verdict": "supported"
+    },
+    {
+     "agent": "B",
+     "note": "UNGA ES-11/1 and ECtHR 2025 judgment support it; Russia rejects both, which does not change the findings.",
+     "verdict": "supported"
+    },
+    {
+     "agent": "C",
+     "note": "Official resolution title 'Aggression against Ukraine', adopted 2 March 2022; ECtHR Grand Chamber found Russia responsible.",
+     "verdict": "supported"
+    }
+   ]
+  },
+  {
+   "claim": "The aggression targets Ukraine's territory and civilians, including Kyiv, and continues in 2026.",
+   "explanation": "The UN human rights monitoring mission recorded 328 civilians killed and 2,105 injured in Ukraine in September 2026, with Kyiv city accounting for 32 killed and 340 injured. From January to September 2026 it recorded 2,570 civilians killed and 15,211 injured.",
+   "id": "C2",
+   "sourceIds": [
+    "S5",
+    "S6"
+   ],
+   "verdict": "supported",
+   "votes": [
+    {
+     "agent": "A",
+     "note": "OHCHR September 2026: 328 civilians killed, 2,105 injured; Kyiv 32 killed, 340 injured.",
+     "verdict": "supported"
+    },
+    {
+     "agent": "B",
+     "note": "OHCHR September 2026 data show continuing civilian casualties, Kyiv among the hardest hit.",
+     "verdict": "supported"
+    },
+    {
+     "agent": "C",
+     "note": "OHCHR mission update of 15 October 2026 records ongoing attacks and Kyiv casualties.",
+     "verdict": "supported"
+    }
+   ]
+  },
+  {
+   "claim": "The aggression started in 2022.",
+   "explanation": "The full-scale invasion began on 24 February 2022, but Ukraine's parliament set 20 February 2014 as the start of Russia's temporary occupation of Crimea, and Ukraine's foreign ministry dates the armed aggression to that day. The UN General Assembly declared the 2014 Crimea referendum invalid on 27 March 2014, and the ECtHR found Russian control over parts of Donbas from 2014.",
+   "id": "C3",
+   "sourceIds": [
+    "S4",
+    "S7",
+    "S8",
+    "S3"
+   ],
+   "verdict": "partly",
+   "votes": [
+    {
+     "agent": "A",
+     "note": "Full-scale invasion began 24 Feb 2022, but aggression began in 2014 with Crimea.",
+     "verdict": "partly"
+    },
+    {
+     "agent": "B",
+     "note": "Overstated: aggression began 2014 (Crimea, Donbas); 2022 marks the full-scale invasion.",
+     "verdict": "partly"
+    },
+    {
+     "agent": "C",
+     "note": "Ukraine's MFA and parliament date the start of armed aggression to 20 February 2014.",
+     "verdict": "partly"
+    }
+   ]
+  }
+ ],
+ "country": "Ukraine",
+ "figures": [
+  {
+   "id": "F1",
+   "kind": "bar",
+   "note": "*2022 covers 24 Feb 2022 to 2 Jan 2023 as first recorded (S9); 2023-2025 from OCHA's February 2026 summary (S6); 2026 from OHCHR's September 2026 update (S5). UN figures are minimums.",
+   "points": [
+    {
+     "label": "2022*",
+     "value": 6919
+    },
+    {
+     "label": "2023",
+     "value": 1974
+    },
+    {
+     "label": "2024",
+     "value": 2088
+    },
+    {
+     "label": "2025",
+     "value": 2526
+    },
+    {
+     "label": "2026 Jan-Sep",
+     "value": 2570
+    }
+   ],
+   "sourceId": "S9",
+   "title": "Civilians killed in Ukraine per year, UN-verified",
+   "unit": "people killed"
+  }
+ ],
+ "headline": "Russian aggression confirmed; it began in 2014, not 2022",
+ "key": "u_hruLO6UW79T7Tk0Z_p3uXA--mvht02gk0q5k",
+ "language": "English",
+ "lat": 50.4501,
+ "lon": 30.5234,
+ "method": {
+  "agents": 3,
+  "notes": "Searched UN, OHCHR, OCHA, ECtHR and Ukrainian parliament and foreign-ministry sources in English and Ukrainian, plus Ukrainian news outlets; three independent verifiers agreed on every claim, so verdicts are unanimous. Kyiv-specific casualty totals since 2022 were inconsistent across media and were not used; a verifier's report of a 7 October 2026 strike on Kyiv was not independently confirmed and was left out.",
+  "researchedAt": "2026-10-21T08:35:00Z"
+ },
+ "phrases": [
+  {
+   "claimId": "C1",
+   "text": "russia agression"
+  },
+  {
+   "claimId": "C2",
+   "text": "on ukraine"
+  },
+  {
+   "claimId": "C3",
+   "text": "started in 2022"
+  }
+ ],
+ "place": "Kyiv",
+ "publishedAt": "2026-10-21T08:35:00Z",
+ "researchedAt": "2026-10-21T08:35:00Z",
+ "responsible": [
+  {
+   "name": "Government of the Russian Federation",
+   "role": "State found responsible for the aggression by the UN General Assembly and the ECtHR"
+  },
+  {
+   "name": "UN Human Rights Monitoring Mission in Ukraine (OHCHR)",
+   "role": "Records and verifies civilian casualties"
+  },
+  {
+   "name": "Kyiv City Military Administration",
+   "role": "Local authority responsible for civil protection in Kyiv"
+  }
+ ],
+ "sources": [
+  {
+   "date": "2022-03-02",
+   "id": "S1",
+   "outlet": "UN Digital Library",
+   "title": "Aggression against Ukraine: resolution adopted by the General Assembly (A/RES/ES-11/1)",
+   "type": "official",
+   "url": "https://digitallibrary.un.org/record/3965290?ln=en"
+  },
+  {
+   "date": "2026",
+   "id": "S2",
+   "outlet": "Wikipedia",
+   "title": "United Nations General Assembly Resolution ES-11/1",
+   "type": "portal",
+   "url": "https://en.wikipedia.org/wiki/United_Nations_General_Assembly_Resolution_ES-11/1"
+  },
+  {
+   "date": "2025-07",
+   "id": "S3",
+   "outlet": "American Society of International Law",
+   "title": "ECtHR finds Russia committed grave international law violations in Ukraine",
+   "type": "ngo",
+   "url": "https://www.asil.org/ILIB/ecthr-finds-russia-committed-grave-international-law-violations-ukraine"
+  },
+  {
+   "date": "2026",
+   "id": "S4",
+   "outlet": "Wikipedia",
+   "title": "United Nations General Assembly Resolution 68/262",
+   "type": "portal",
+   "url": "https://en.wikipedia.org/wiki/United_Nations_General_Assembly_Resolution_68/262"
+  },
+  {
+   "date": "2026-10-15",
+   "id": "S5",
+   "outlet": "UN Human Rights Monitoring Mission in Ukraine (OHCHR)",
+   "title": "Protection of Civilians in Armed Conflict - September 2026",
+   "type": "official",
+   "url": "https://ukraine.ohchr.org/en/Protection-of-Civilians-in-Armed-Conflict-September-2026"
+  },
+  {
+   "date": "2026-02",
+   "id": "S6",
+   "outlet": "UN OCHA / ReliefWeb",
+   "title": "Four years of full-scale invasion of Ukraine: key facts and findings (February 2026)",
+   "type": "official",
+   "url": "https://reliefweb.int/report/ukraine/four-years-full-scale-invasion-ukraine-key-facts-and-findings-february-2026"
+  },
+  {
+   "date": "2021-02-16",
+   "id": "S7",
+   "outlet": "Radio Svoboda",
+   "title": "Verkhovna Rada sets 20 February 2014 as the start of Crimea's temporary occupation",
+   "type": "news",
+   "url": "https://www.radiosvoboda.org/a/news-krym-verkhovna-rada/31105489.html"
+  },
+  {
+   "date": "2018-02-20",
+   "id": "S8",
+   "outlet": "Government of Ukraine (kmu.gov.ua)",
+   "title": "MFA statement on the 4th anniversary of the start of Russia's armed aggression against Ukraine",
+   "type": "official",
+   "url": "https://www.kmu.gov.ua/news/zayava-mzs-do-4-h-rokovin-pochatku-zbrojnoyi-agresiyi-rf-proti-ukrayini"
+  },
+  {
+   "date": "2023-01-03",
+   "id": "S9",
+   "outlet": "United Nations Ukraine (OHCHR)",
+   "title": "Ukraine: civilian casualty update, 3 January 2023",
+   "type": "official",
+   "url": "https://ukraine.un.org/en/download/124396/214045"
+  }
+ ],
+ "submittedAt": "2026-10-21T07:41:39.572Z",
+ "summary": "International bodies, including the UN General Assembly and the European Court of Human Rights, have found Russia responsible for aggression and grave violations against Ukraine, and UN monitors still record civilian deaths, including in Kyiv, in 2026. The report's start date is only partly right: the full-scale invasion began on 24 February 2022, but Ukraine and international bodies date the aggression to February 2014 in Crimea.",
+ "timeline": [
+  {
+   "date": "2014-02-20",
+   "event": "Date Ukraine's parliament set as the start of Russia's temporary occupation of Crimea.",
+   "sourceId": "S7"
+  },
+  {
+   "date": "2014-03-27",
+   "event": "UN General Assembly adopts resolution 68/262 on Ukraine's territorial integrity, calling the Crimea referendum invalid (100-11-58).",
+   "sourceId": "S4"
+  },
+  {
+   "date": "2022-02-24",
+   "event": "Russia begins the full-scale invasion of Ukraine.",
+   "sourceId": "S6"
+  },
+  {
+   "date": "2022-03-02",
+   "event": "UN General Assembly adopts resolution ES-11/1, 'Aggression against Ukraine' (141-5-35).",
+   "sourceId": "S1"
+  },
+  {
+   "date": "2025-07-09",
+   "event": "ECtHR Grand Chamber rules in Ukraine and the Netherlands v. Russia, finding grave violations since 2014.",
+   "sourceId": "S3"
+  },
+  {
+   "date": "2026-10-15",
+   "event": "UN monitors report 328 civilians killed in September 2026, including 32 in Kyiv.",
+   "sourceId": "S5"
+  }
+ ],
+ "title": "war in ukraine",
+ "verdict": {
+  "label": "Largely supported",
+  "score": 83
+ }
+}

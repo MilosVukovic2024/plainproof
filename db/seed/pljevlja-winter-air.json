@@ -1,0 +1,518 @@
+{
+ "category": "Environment",
+ "citizenText": "Every winter Pljevlja is covered in thick smoke and the air is the worst in Europe. Kids cough the whole season. The thermal power plant and the coal stoves in houses are to blame. The district heating that would connect the town to the plant was promised years ago and still isn't built, and nobody is held responsible.",
+ "claims": [
+  {
+   "claim": "Air pollution in Pljevlja peaks every winter.",
+   "explanation": "In 2024 the Pljevlja station recorded 95 days above the PM10 daily limit, where 35 are allowed, and the Environmental Protection Agency links the worst air to the heating season. January to March 2022 alone had 65 such days.",
+   "id": "C1",
+   "sourceIds": [
+    "S1",
+    "S4",
+    "S5"
+   ],
+   "verdict": "supported",
+   "votes": [
+    {
+     "agent": "A",
+     "note": "EPA 2024 report: 95 exceedance days, concentrated in heating-season months.",
+     "verdict": "supported"
+    },
+    {
+     "agent": "B",
+     "note": "A 2025 review paper and RFE/RL reporting show particle peaks in winter, with solid-fuel heating and inversions.",
+     "verdict": "supported"
+    },
+    {
+     "agent": "C",
+     "note": "Emission inventory and review both place the worst air in the heating season; 65 days in Q1 2022.",
+     "verdict": "supported"
+    }
+   ]
+  },
+  {
+   "claim": "Pljevlja has the worst air in Europe.",
+   "explanation": "Pljevlja is among Europe's most polluted towns but not the worst. IQAir's 2024 ranking placed it third for PM2.5, behind Novi Pazar and Bijelo Polje, and it does not appear in IQAir's 2025 European top ten.",
+   "id": "C2",
+   "sourceIds": [
+    "S6",
+    "S18"
+   ],
+   "verdict": "partly",
+   "votes": [
+    {
+     "agent": "A",
+     "note": "IQAir 2024 places Pljevlja third in Europe for PM2.5.",
+     "verdict": "partly"
+    },
+    {
+     "agent": "B",
+     "note": "Third in 2024; absent from IQAir's 2025 European top ten.",
+     "verdict": "partly"
+    },
+    {
+     "agent": "C",
+     "note": "Third in 2024; led global indices only on individual days.",
+     "verdict": "partly"
+    }
+   ]
+  },
+  {
+   "claim": "The pollution harms residents' health, including children's.",
+   "explanation": "The Institute of Public Health estimated pollution-related mortality in Pljevlja at 310 per 100,000 residents, the highest of the cities compared, and attributes about 1,200 premature deaths a year in Montenegro to air pollution. No source with measured data on children's respiratory illness in Pljevlja was found.",
+   "id": "C3",
+   "sourceIds": [
+    "S3",
+    "S7"
+   ],
+   "verdict": "partly",
+   "votes": [
+    {
+     "agent": "A",
+     "note": "Highest estimated mortality rate of compared cities; no child-specific data for Pljevlja.",
+     "verdict": "partly"
+    },
+    {
+     "agent": "B",
+     "note": "Highest per-capita health burden in a national study; children listed as vulnerable, no local child data.",
+     "verdict": "partly"
+    },
+    {
+     "agent": "C",
+     "note": "Modelled health harm is documented; no measured data on children's respiratory illness.",
+     "verdict": "partly"
+    }
+   ]
+  },
+  {
+   "claim": "The thermal power plant and household coal stoves are the main causes.",
+   "explanation": "The draft 2026–2029 air quality strategy names household heating as the largest source of particles, and the plant accounts for about 99% of Montenegro's sulphur dioxide. The agency's 2024 report names burning of wood and coal as the dominant source in the northern zone; the coal mine, ash dump and traffic also contribute.",
+   "id": "C4",
+   "sourceIds": [
+    "S17",
+    "S1",
+    "S3"
+   ],
+   "verdict": "supported",
+   "votes": [
+    {
+     "agent": "A",
+     "note": "Household wood and coal burning dominate particles; the plant mainly drives sulphur oxides.",
+     "verdict": "partly"
+    },
+    {
+     "agent": "B",
+     "note": "Draft strategy: households the largest particle source, the plant 99% of national SO2.",
+     "verdict": "supported"
+    },
+    {
+     "agent": "C",
+     "note": "EPCG itself named the plant and individual coal stoves as the main causes.",
+     "verdict": "supported"
+    }
+   ]
+  },
+  {
+   "claim": "District heating was promised years ago and is still not built.",
+   "explanation": "District heating was promised under a 2019 government conclusion, and €2.5 million set aside for 2020 was not spent. It is now under construction: phase 1 of the primary pipeline is almost finished and completion is announced for spring 2027, so it is unfinished rather than unbuilt.",
+   "id": "C5",
+   "sourceIds": [
+    "S8",
+    "S12",
+    "S14"
+   ],
+   "verdict": "partly",
+   "votes": [
+    {
+     "agent": "A",
+     "note": "Promised in 2019, now under construction, completion announced for spring 2027.",
+     "verdict": "partly"
+    },
+    {
+     "agent": "B",
+     "note": "Promised since 2019; 2020 funds unspent; the system still delivers no heat.",
+     "verdict": "supported"
+    },
+    {
+     "agent": "C",
+     "note": "Phase 1 complete and phase 2 resumed in March 2026: unfinished, not unstarted.",
+     "verdict": "partly"
+    }
+   ]
+  },
+  {
+   "claim": "Nobody has been held responsible.",
+   "explanation": "No sanctions or dismissals were found. Formal proceedings exist: Energy Community case ECS-15/21 over the plant's operation, opened in 2021; a resident's lawsuit against the state, pending as of January 2024; and a prosecutor case opened in 2026 on a criminal complaint about the plant's restart.",
+   "id": "C6",
+   "sourceIds": [
+    "S16",
+    "S15",
+    "S11"
+   ],
+   "verdict": "partly",
+   "votes": [
+    {
+     "agent": "A",
+     "note": "No one sanctioned; a citizen lawsuit and a prosecutor case are open.",
+     "verdict": "partly"
+    },
+    {
+     "agent": "B",
+     "note": "No individual accountability; Energy Community case and citizen lawsuit undecided.",
+     "verdict": "partly"
+    },
+    {
+     "agent": "C",
+     "note": "No penalties found; Energy Community case and a pending lawsuit exist.",
+     "verdict": "partly"
+    }
+   ]
+  }
+ ],
+ "country": "Montenegro",
+ "figures": [
+  {
+   "id": "F1",
+   "kind": "bar",
+   "note": "Pljevlja monitoring station, daily mean above 50 µg/m³. 2022–2023 from CIN-CG, 2024 from the Environmental Protection Agency, January–June 2026 from MINA. 2025 full-year figure not found.",
+   "points": [
+    {
+     "label": "2022",
+     "value": 124
+    },
+    {
+     "label": "2023",
+     "value": 89
+    },
+    {
+     "label": "2024",
+     "value": 95
+    },
+    {
+     "label": "2026 H1",
+     "value": 45
+    }
+   ],
+   "reference": {
+    "label": "35 days allowed per year",
+    "value": 35
+   },
+   "sourceId": "S1",
+   "title": "Days over the PM10 daily limit",
+   "unit": "days per year"
+  },
+  {
+   "id": "F2",
+   "kind": "bar",
+   "note": "Guarantee measurements by an accredited Slovenian lab, reported by EPCG in July 2026. The plant ran only part of 2025, so annual totals are not yet comparable.",
+   "points": [
+    {
+     "label": "Before",
+     "value": 7030
+    },
+    {
+     "label": "After",
+     "value": 113
+    }
+   ],
+   "reference": {
+    "label": "Guarantee limit 130",
+    "value": 130
+   },
+   "sourceId": "S13",
+   "title": "Sulphur dioxide from the plant's chimney",
+   "unit": "mg/Nm³"
+  }
+ ],
+ "headline": "Pljevlja's winter air: dirty, but not Europe's worst",
+ "key": "demo--pljevlja1",
+ "language": "English",
+ "lat": 43.357,
+ "lon": 19.358,
+ "method": {
+  "agents": 3,
+  "notes": "Research covered Environmental Protection Agency reports, Energy Community case documents, national and local newspapers, a local TV portal and NGO investigations published 2017–2026. Three verifiers checked each claim separately; each final verdict follows the majority, and two verifier details that conflicted with the cited sources were left out. This demonstration dossier was run by hand before the scheduled research run took over.",
+  "researchedAt": "2026-10-21T07:40:00Z"
+ },
+ "phrases": [
+  {
+   "claimId": "C1",
+   "text": "Every winter Pljevlja is covered in thick smoke"
+  },
+  {
+   "claimId": "C2",
+   "text": "the air is the worst in Europe"
+  },
+  {
+   "claimId": "C3",
+   "text": "Kids cough the whole season"
+  },
+  {
+   "claimId": "C4",
+   "text": "The thermal power plant and the coal stoves in houses are to blame"
+  },
+  {
+   "claimId": "C5",
+   "text": "The district heating that would connect the town to the plant was promised years ago and still isn't built"
+  },
+  {
+   "claimId": "C6",
+   "text": "nobody is held responsible"
+  }
+ ],
+ "place": "Pljevlja",
+ "publishedAt": "2026-10-21T07:58:00Z",
+ "researchedAt": "2026-10-21T07:40:00Z",
+ "responsible": [
+  {
+   "name": "Elektroprivreda Crne Gore (EPCG)",
+   "role": "Owns and operates the Pljevlja thermal power plant; funds part of the heat supply."
+  },
+  {
+   "name": "Ministry of Public Works",
+   "role": "Funds the €8.8 million district heating pipeline works."
+  },
+  {
+   "name": "Ministry of Energy",
+   "role": "Oversees the plant reconstruction contract and its delays."
+  },
+  {
+   "name": "Municipality of Pljevlja",
+   "role": "Will manage the district heating network and the town's boiler houses."
+  },
+  {
+   "name": "Environmental Protection Agency",
+   "role": "Monitors air quality and reports limit breaches."
+  }
+ ],
+ "sources": [
+  {
+   "date": "Oct 2025",
+   "id": "S1",
+   "outlet": "Environmental Protection Agency of Montenegro",
+   "title": "Information on the state of the environment in Montenegro, 2024",
+   "type": "official",
+   "url": "https://epa.org.me/wp-content/uploads/2025/10/Informacija-o-stanju-zivotne-sredine-u-CG-za-2024.pdf"
+  },
+  {
+   "date": "25 Jul 2026",
+   "id": "S2",
+   "outlet": "MINA news agency",
+   "title": "Pljevlja and Bijelo Polje exceed the annual PM10 allowance",
+   "type": "news",
+   "url": "https://mina.news/article/u-pljevljima-i-bijelom-polju-prema%C5%A1en-broj-srednjih-vrijednosti-pm10-%C4%8Destica-na-godi%C5%A1njem-nivou"
+  },
+  {
+   "date": "22 Feb 2025",
+   "id": "S3",
+   "outlet": "Center for Investigative Journalism of Montenegro (CIN-CG)",
+   "title": "Pollution the government ignores",
+   "type": "ngo",
+   "url": "https://www.cin-cg.me/zagadenje-koje-vlada-ignorise-pazite-vazduh-vreba-na-vas/"
+  },
+  {
+   "date": "19 Apr 2022",
+   "id": "S4",
+   "outlet": "Danas",
+   "title": "Pljevlja residents breathed polluted air on 65 days in three months",
+   "type": "news",
+   "url": "https://www.danas.rs/svet/region/pljevljaci-za-tri-meseca-cak-65-dana-udisali-zagadjen-vazduh/"
+  },
+  {
+   "date": "23 Feb 2017",
+   "id": "S5",
+   "outlet": "CEE Bankwatch Network",
+   "title": "Under heavy skies: first independent pollution monitoring in Montenegro",
+   "type": "ngo",
+   "url": "https://bankwatch.org/blog/under-heavy-skies-dire-results-from-first-independent-pollution-monitoring-in-montenegro"
+  },
+  {
+   "date": "15 Dec 2025",
+   "id": "S6",
+   "outlet": "Energetski portal",
+   "title": "Cities in Serbia and Bosnia and Herzegovina rank among Europe's most polluted by PM2.5",
+   "type": "portal",
+   "url": "https://www.energetskiportal.com/cities-in-serbia-and-bosnia-and-herzegovina-rank-among-europes-most-polluted-by-pm2-5/"
+  },
+  {
+   "date": "16 Feb 2024",
+   "id": "S7",
+   "outlet": "Green Home",
+   "title": "Air pollution contributes to 1,200 early deaths a year in Montenegro",
+   "type": "ngo",
+   "url": "https://www.greenhome.co.me/en/zagadenje-vazduha-doprinosi-prijevremenom-umiranju-1200-stanovnika-na-godisnjem-nivou-u-crnoj-gori/"
+  },
+  {
+   "date": "22 Jun 2021",
+   "id": "S8",
+   "outlet": "Novosti",
+   "title": "No tender yet: Pljevlja mayor says district heating is not abandoned",
+   "type": "news",
+   "url": "https://www.novosti.rs/crna-gora/vesti/1009329/nema-jos-tendera-predsednik-opstine-pljevlja-uverava-gradjane-nije-odustalo-toplifikacije"
+  },
+  {
+   "date": "28 Apr 2022",
+   "id": "S9",
+   "outlet": "Balkan Green Energy News",
+   "title": "EPCG starts ecological reconstruction of TPP Pljevlja",
+   "type": "portal",
+   "url": "https://balkangreenenergynews.com/rs/epcg-zapocela-ekolosku-rekonstrukciju-te-pljevlja/"
+  },
+  {
+   "date": "24 Mar 2025",
+   "id": "S10",
+   "outlet": "Biznis.rs",
+   "title": "TPP Pljevlja back in operation from November after reconstruction",
+   "type": "portal",
+   "url": "https://biznis.rs/vesti/region/od-novembra-te-pljevlja-opet-u-funkciji-nakon-ekoloske-rekonstrukcije/"
+  },
+  {
+   "date": "8 Aug 2026",
+   "id": "S11",
+   "outlet": "PV portal",
+   "title": "Unit restarted before desulphurisation; DeSOx in trial operation two months later",
+   "type": "portal",
+   "url": "https://pvportal.me/2026/08/ekoloska-rekonstrukcija-te-pljevlja-blok-pokrenut-prije-sistema-za-odsumporavanje-dva-mjeseca-kasnije-desox-stavljen-u-probni-rad/"
+  },
+  {
+   "date": "19 Aug 2026",
+   "id": "S12",
+   "outlet": "PV portal",
+   "title": "Pljevlja district heating enters a new phase, completion announced for spring 2027",
+   "type": "portal",
+   "url": "https://pvportal.me/2026/08/toplifikacija-pljevalja-ulazi-u-novu-fazu-zavrsetak-sistema-najavljen-za-proljece-2027/"
+  },
+  {
+   "date": "24 Jul 2026",
+   "id": "S13",
+   "outlet": "Ecoportal",
+   "title": "EPCG: measurements confirm significant cut in TPP Pljevlja emissions",
+   "type": "portal",
+   "url": "https://www.ecoportal.me/epcg-mjerenja-potvrdila-znacajno-smanjenje-emisija-iz-te-pljevlja/"
+  },
+  {
+   "date": "15 Oct 2025",
+   "id": "S14",
+   "outlet": "RTPV (Radio Television Pljevlja)",
+   "title": "Deadline for the ecological reconstruction of TPP Pljevlja to be extended",
+   "type": "tv",
+   "url": "https://tvpljevlja.me/2025/10/15/vijesti-pisu-rok-za-realizaciju-ekoloske-rekonstrukcije-te-pljevlja-bice-prolongiran/"
+  },
+  {
+   "date": "16 Jan 2024",
+   "id": "S15",
+   "outlet": "Radio Free Europe / Radio Liberty",
+   "title": "Pljevlja resident sues the state over air pollution",
+   "type": "news",
+   "url": "https://www.slobodnaevropa.org/a/crna-gora-pljevlja-tuzba-zagadjenje/32776810.html"
+  },
+  {
+   "date": "13 Jul 2023",
+   "id": "S16",
+   "outlet": "Energy Community Secretariat",
+   "title": "Case ECS-15/21 (Montenegro, TPP Pljevlja), Reasoned Request to the Ministerial Council",
+   "type": "official",
+   "url": "https://www.energy-community.org/dam/jcr:944b0f6a-570f-4dc4-a157-d1dbf7cf17bf/21st%20MC_Annex%20A17a_ME_Case%20ECS-15_21_15-11-2023.pdf"
+  },
+  {
+   "date": "16 Feb 2026",
+   "id": "S17",
+   "outlet": "Radio Free Europe / Radio Liberty",
+   "title": "Air pollution in Montenegro: new strategy promises change",
+   "type": "news",
+   "url": "https://www.slobodnaevropa.org/a/crna-gora-zrak-zagadjenje-nova-strategija-/33679840.html"
+  },
+  {
+   "date": "25 Mar 2026",
+   "id": "S18",
+   "outlet": "Euronews",
+   "title": "Five of Europe's top 10 most polluted cities are in this one country",
+   "type": "news",
+   "url": "https://euronews.com/2026/03/25/five-of-europes-top-10-most-polluted-cities-are-in-this-one-country"
+  }
+ ],
+ "submittedAt": "2026-10-21T07:10:00Z",
+ "summary": "Official monitoring confirms that Pljevlja breaks the daily PM10 limit far more often than the law allows, mostly during the heating season. Household coal and wood stoves are the main source of particles and the power plant the main source of sulphur dioxide. The town ranks among Europe's most polluted but was not the worst in 2024 or 2025, and district heating, promised since 2019, is under construction with completion announced for spring 2027.",
+ "timeline": [
+  {
+   "date": "Dec 2016 – Jan 2017",
+   "event": "Independent monitoring finds PM2.5 above the EU daily limit on 29 of 35 days.",
+   "sourceId": "S5"
+  },
+  {
+   "date": "2019",
+   "event": "Government conclusion on district heating; €2.5 million from EPCG planned for 2020 is not spent.",
+   "sourceId": "S8"
+  },
+  {
+   "date": "Jun 2020",
+   "event": "Plant reconstruction contract signed with a consortium led by Dongfang Electric International, about €54.4 million.",
+   "sourceId": "S11"
+  },
+  {
+   "date": "Apr 2021",
+   "event": "Energy Community opens case ECS-15/21 over the plant running past its permitted hours.",
+   "sourceId": "S16"
+  },
+  {
+   "date": "Jun 2021",
+   "event": "Still no tender for the district heating pipeline.",
+   "sourceId": "S8"
+  },
+  {
+   "date": "Jan – Mar 2022",
+   "event": "65 days over the PM10 daily limit in three months.",
+   "sourceId": "S4"
+  },
+  {
+   "date": "Apr 2022",
+   "event": "Reconstruction works officially start, with completion planned for October 2024.",
+   "sourceId": "S9"
+  },
+  {
+   "date": "Jan 2024",
+   "event": "A resident sues the state at the Basic Court in Podgorica over polluted air.",
+   "sourceId": "S15"
+  },
+  {
+   "date": "2024",
+   "event": "95 days over the PM10 limit; annual PM2.5 average 32.8 µg/m³ against a limit of 20.",
+   "sourceId": "S1"
+  },
+  {
+   "date": "31 Mar 2025",
+   "event": "Plant shuts down for the reconstruction works.",
+   "sourceId": "S10"
+  },
+  {
+   "date": "Oct 2025",
+   "event": "Reconstruction deadline extended; district heating connection due by 15 May 2026.",
+   "sourceId": "S14"
+  },
+  {
+   "date": "30 Nov 2025",
+   "event": "Plant restarts before its desulphurisation unit is operational.",
+   "sourceId": "S11"
+  },
+  {
+   "date": "Feb 2026",
+   "event": "Desulphurisation enters trial operation; draft air strategy names households the largest particle source.",
+   "sourceId": "S17"
+  },
+  {
+   "date": "Jul 2026",
+   "event": "45 days over the PM10 limit in the first half of the year; EPCG reports a 98% cut in SO2 at the chimney.",
+   "sourceId": "S2"
+  },
+  {
+   "date": "Aug 2026",
+   "event": "District heating phase 1 nearly done; completion announced for spring 2027.",
+   "sourceId": "S12"
+  }
+ ],
+ "title": "Every winter Pljevlja chokes on smoke",
+ "verdict": {
+  "label": "Partly supported",
+  "score": 62
+ }
+}
